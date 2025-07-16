@@ -1,0 +1,1757 @@
+[
+  {
+    "student_id": 1,
+    "name": { "first": "Laxman", "last": "Shrestha" },
+    "program": "Computer Science",
+    "year": 3,
+    "address": { "street": "Kanti Marg", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "A" },
+      { "code": "CS204", "title": "Algorithms", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000001" },
+      { "type": "email", "value": "laxman.shrestha@example.com" }
+    ],
+    "guardian": {
+      "name": "Hari Shrestha",
+      "relation": "father",
+      "contact": "9800000002"
+    },
+    "scholarships": [
+      { "name": "Merit Scholarship", "amount": 20000, "year": 2023 }
+    ],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "absent" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Football", "level": "District", "year": 2022 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/1.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Excellent in algorithms.",
+      "Needs improvement in attendance."
+    ],
+    "created_at": "2024-06-01T10:00:00Z",
+    "updated_at": "2024-06-10T15:30:00Z"
+  },
+  {
+    "student_id": 2,
+    "name": { "first": "Suman", "last": "Bhandari" },
+    "program": "Electrical Engineering",
+    "year": 2,
+    "address": { "street": "Pulchowk Road", "city": "Lalitpur", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "A-" },
+      { "code": "EE205", "title": "Digital Logic", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000003" },
+      { "type": "email", "value": "suman.bhandari@example.com" }
+    ],
+    "guardian": {
+      "name": "Ramesh Bhandari",
+      "relation": "father",
+      "contact": "9800000004"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Robotics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/2.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Active in robotics club."
+    ],
+    "created_at": "2024-06-01T11:00:00Z",
+    "updated_at": "2024-06-10T16:00:00Z"
+  },
+  {
+    "student_id": 3,
+    "name": { "first": "Suraj", "last": "Gurung" },
+    "program": "Mechanical Engineering",
+    "year": 4,
+    "address": { "street": "Bhimsen Marg", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A-" },
+      { "code": "ME210", "title": "Fluid Mechanics", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000005" },
+      { "type": "email", "value": "suraj.gurung@example.com" }
+    ],
+    "guardian": {
+      "name": "Dambar Gurung",
+      "relation": "father",
+      "contact": "9800000006"
+    },
+    "scholarships": [
+      { "name": "Sports Scholarship", "amount": 15000, "year": 2022 }
+    ],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Basketball", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/3.jpg",
+    "enrollment_status": "graduated",
+    "notes": [
+      "Graduated with distinction."
+    ],
+    "created_at": "2024-06-01T12:00:00Z",
+    "updated_at": "2024-06-10T17:00:00Z"
+  },
+  {
+    "student_id": 4,
+    "name": { "first": "Arjun", "last": "Basnet" },
+    "program": "Civil Engineering",
+    "year": 2,
+    "address": { "street": "Nag Pokhari", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "B" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000007" },
+      { "type": "email", "value": "arjun.basnet@example.com" }
+    ],
+    "guardian": {
+      "name": "Gopal Basnet",
+      "relation": "father",
+      "contact": "9800000008"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cycling Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/4.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T13:00:00Z",
+    "updated_at": "2024-06-10T18:00:00Z"
+  },
+  {
+    "student_id": 5,
+    "name": { "first": "Nabin", "last": "Koirala" },
+    "program": "Business Administration",
+    "year": 1,
+    "address": { "street": "Jawalakhel", "city": "Lalitpur", "country": "Nepal" },
+    "courses": [
+      { "code": "BA101", "title": "Principles of Management", "grade": "A" },
+      { "code": "BA204", "title": "Marketing", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000009" },
+      { "type": "email", "value": "nabin.koirala@example.com" }
+    ],
+    "guardian": {
+      "name": "Ram Koirala",
+      "relation": "father",
+      "contact": "9800000010"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Debating Society", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/5.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in marketing."
+    ],
+    "created_at": "2024-06-01T14:00:00Z",
+    "updated_at": "2024-06-10T19:00:00Z"
+  },
+  {
+    "student_id": 6,
+    "name": { "first": "Prakash", "last": "Sharma" },
+    "program": "Computer Science",
+    "year": 2,
+    "address": { "street": "Durbar Marg", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "B" },
+      { "code": "CS230", "title": "Databases", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000011" },
+      { "type": "email", "value": "prakash.sharma@example.com" }
+    ],
+    "guardian": {
+      "name": "Rajesh Sharma",
+      "relation": "father",
+      "contact": "9800000012"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/6.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in databases."
+    ],
+    "created_at": "2024-06-01T15:00:00Z",
+    "updated_at": "2024-06-10T20:00:00Z"
+  },
+  {
+    "student_id": 7,
+    "name": { "first": "Ramesh", "last": "Rai" },
+    "program": "Electrical Engineering",
+    "year": 3,
+    "address": { "street": "Birendra Chowk", "city": "Biratnagar", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "A" },
+      { "code": "EE240", "title": "Signals", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000013" },
+      { "type": "email", "value": "ramesh.rai@example.com" }
+    ],
+    "guardian": {
+      "name": "Sita Rai",
+      "relation": "mother",
+      "contact": "9800000014"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Electronics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/7.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in circuits."
+    ],
+    "created_at": "2024-06-01T16:00:00Z",
+    "updated_at": "2024-06-10T21:00:00Z"
+  },
+  {
+    "student_id": 8,
+    "name": { "first": "Sita", "last": "Luitel" },
+    "program": "Information Technology",
+    "year": 1,
+    "address": { "street": "Bagbazar", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "A-" },
+      { "code": "IT220", "title": "Networking", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000015" },
+      { "type": "email", "value": "sita.luitel@example.com" }
+    ],
+    "guardian": {
+      "name": "Gopal Luitel",
+      "relation": "father",
+      "contact": "9800000016"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/1.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in networking."
+    ],
+    "created_at": "2024-06-01T17:00:00Z",
+    "updated_at": "2024-06-10T22:00:00Z"
+  },
+  {
+    "student_id": 9,
+    "name": { "first": "Gita", "last": "Adhikari" },
+    "program": "Civil Engineering",
+    "year": 4,
+    "address": { "street": "New Baneshwor", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "A" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000017" },
+      { "type": "email", "value": "gita.adhikari@example.com" }
+    ],
+    "guardian": {
+      "name": "Rajesh Adhikari",
+      "relation": "father",
+      "contact": "9800000018"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/2.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T18:00:00Z",
+    "updated_at": "2024-06-10T23:00:00Z"
+  },
+  {
+    "student_id": 10,
+    "name": { "first": "Hari", "last": "Poudel" },
+    "program": "Mechanical Engineering",
+    "year": 2,
+    "address": { "street": "Airport Road", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "B+" },
+      { "code": "ME320", "title": "Machine Design", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000019" },
+      { "type": "email", "value": "hari.poudel@example.com" }
+    ],
+    "guardian": {
+      "name": "Gopal Poudel",
+      "relation": "father",
+      "contact": "9800000020"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/8.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in thermodynamics."
+    ],
+    "created_at": "2024-06-01T19:00:00Z",
+    "updated_at": "2024-06-10T24:00:00Z"
+  },
+  {
+    "student_id": 11,
+    "name": { "first": "Ram", "last": "Acharya" },
+    "program": "Computer Science",
+    "year": 1,
+    "address": { "street": "Sahid Chowk", "city": "Bharatpur", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "A-" },
+      { "code": "CS204", "title": "Algorithms", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000021" },
+      { "type": "email", "value": "ram.acharya@example.com" }
+    ],
+    "guardian": {
+      "name": "Shyam Acharya",
+      "relation": "father",
+      "contact": "9800000022"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/9.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in algorithms."
+    ],
+    "created_at": "2024-06-01T20:00:00Z",
+    "updated_at": "2024-06-10T25:00:00Z"
+  },
+  {
+    "student_id": 12,
+    "name": { "first": "Shyam", "last": "Subedi" },
+    "program": "Electrical Engineering",
+    "year": 4,
+    "address": { "street": "Lakeside", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "B" },
+      { "code": "EE205", "title": "Digital Logic", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000023" },
+      { "type": "email", "value": "shyam.subedi@example.com" }
+    ],
+    "guardian": {
+      "name": "Gita Subedi",
+      "relation": "mother",
+      "contact": "9800000024"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Electronics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/10.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in digital logic."
+    ],
+    "created_at": "2024-06-01T21:00:00Z",
+    "updated_at": "2024-06-10T26:00:00Z"
+  },
+  {
+    "student_id": 13,
+    "name": { "first": "Nirmala", "last": "Dhakal" },
+    "program": "Business Administration",
+    "year": 2,
+    "address": { "street": "Durga Marg", "city": "Butwal", "country": "Nepal" },
+    "courses": [
+      { "code": "BA101", "title": "Principles of Management", "grade": "A" },
+      { "code": "BA210", "title": "Accounting", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000025" },
+      { "type": "email", "value": "nirmala.dhakal@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Dhakal",
+      "relation": "father",
+      "contact": "9800000026"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Business Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/3.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in accounting."
+    ],
+    "created_at": "2024-06-01T22:00:00Z",
+    "updated_at": "2024-06-10T27:00:00Z"
+  },
+  {
+    "student_id": 14,
+    "name": { "first": "Sunita", "last": "Khadka" },
+    "program": "Information Technology",
+    "year": 3,
+    "address": { "street": "Sahid Marg", "city": "Dharan", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "A" },
+      { "code": "IT220", "title": "Networking", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000027" },
+      { "type": "email", "value": "sunita.khadka@example.com" }
+    ],
+    "guardian": {
+      "name": "Bikash Khadka",
+      "relation": "father",
+      "contact": "9800000028"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/4.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in networking."
+    ],
+    "created_at": "2024-06-01T23:00:00Z",
+    "updated_at": "2024-06-10T28:00:00Z"
+  },
+  {
+    "student_id": 15,
+    "name": { "first": "Dipak", "last": "Tamang" },
+    "program": "Computer Science",
+    "year": 2,
+    "address": { "street": "Baglung Road", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "CS230", "title": "Databases", "grade": "B+" },
+      { "code": "CS204", "title": "Algorithms", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000029" },
+      { "type": "email", "value": "dipak.tamang@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Tamang",
+      "relation": "father",
+      "contact": "9800000030"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/11.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in algorithms."
+    ],
+    "created_at": "2024-06-01T24:00:00Z",
+    "updated_at": "2024-06-10T29:00:00Z"
+  },
+  {
+    "student_id": 16,
+    "name": { "first": "Anjali", "last": "Magar" },
+    "program": "Civil Engineering",
+    "year": 1,
+    "address": { "street": "Suryabinayak", "city": "Bhaktapur", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "A-" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000031" },
+      { "type": "email", "value": "anjali.magar@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Magar",
+      "relation": "father",
+      "contact": "9800000032"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/5.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T25:00:00Z",
+    "updated_at": "2024-06-10T30:00:00Z"
+  },
+  {
+    "student_id": 17,
+    "name": { "first": "Krishna", "last": "Nepali" },
+    "program": "Agriculture",
+    "year": 4,
+    "address": { "street": "Prithvi Chowk", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "AG101", "title": "Soil Science", "grade": "A" },
+      { "code": "AG210", "title": "Crop Production", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000033" },
+      { "type": "email", "value": "krishna.nepali@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Nepali",
+      "relation": "father",
+      "contact": "9800000034"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Agricultural Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/12.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in soil science."
+    ],
+    "created_at": "2024-06-01T26:00:00Z",
+    "updated_at": "2024-06-10T31:00:00Z"
+  },
+  {
+    "student_id": 18,
+    "name": { "first": "Bimal", "last": "KC" },
+    "program": "Architecture",
+    "year": 3,
+    "address": { "street": "Mahendra Path", "city": "Nepalgunj", "country": "Nepal" },
+    "courses": [
+      { "code": "AR101", "title": "Principles of Architecture", "grade": "A-" },
+      { "code": "AR210", "title": "Urban Planning", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000035" },
+      { "type": "email", "value": "bimal.kc@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal KC",
+      "relation": "father",
+      "contact": "9800000036"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Architecture Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/13.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in urban planning."
+    ],
+    "created_at": "2024-06-01T27:00:00Z",
+    "updated_at": "2024-06-10T32:00:00Z"
+  },
+  {
+    "student_id": 19,
+    "name": { "first": "Devendra", "last": "Lama" },
+    "program": "Civil Engineering",
+    "year": 2,
+    "address": { "street": "Ring Road", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "B+" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000037" },
+      { "type": "email", "value": "devendra.lama@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Lama",
+      "relation": "father",
+      "contact": "9800000038"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/14.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T28:00:00Z",
+    "updated_at": "2024-06-10T33:00:00Z"
+  },
+  {
+    "student_id": 20,
+    "name": { "first": "Mahesh", "last": "Thapa" },
+    "program": "Mechanical Engineering",
+    "year": 1,
+    "address": { "street": "Parsa Chowk", "city": "Birgunj", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A" },
+      { "code": "ME320", "title": "Machine Design", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000039" },
+      { "type": "email", "value": "mahesh.thapa@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Thapa",
+      "relation": "father",
+      "contact": "9800000040"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/15.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in thermodynamics."
+    ],
+    "created_at": "2024-06-01T29:00:00Z",
+    "updated_at": "2024-06-10T34:00:00Z"
+  },
+  {
+    "student_id": 21,
+    "name": { "first": "Narendra", "last": "Joshi" },
+    "program": "Computer Science",
+    "year": 2,
+    "address": { "street": "Sifal", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS230", "title": "Databases", "grade": "A" },
+      { "code": "CS204", "title": "Algorithms", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000041" },
+      { "type": "email", "value": "narendra.joshi@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Joshi",
+      "relation": "father",
+      "contact": "9800000042"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/16.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in algorithms."
+    ],
+    "created_at": "2024-06-01T30:00:00Z",
+    "updated_at": "2024-06-10T35:00:00Z"
+  },
+  {
+    "student_id": 22,
+    "name": { "first": "Santosh", "last": "Ghimire" },
+    "program": "Electrical Engineering",
+    "year": 4,
+    "address": { "street": "Mahendranagar Road", "city": "Dhangadhi", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "B" },
+      { "code": "EE240", "title": "Signals", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000043" },
+      { "type": "email", "value": "santosh.ghimire@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Ghimire",
+      "relation": "father",
+      "contact": "9800000044"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Electronics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/17.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in circuits."
+    ],
+    "created_at": "2024-06-01T31:00:00Z",
+    "updated_at": "2024-06-10T36:00:00Z"
+  },
+  {
+    "student_id": 23,
+    "name": { "first": "Bishal", "last": "Oli" },
+    "program": "Information Technology",
+    "year": 3,
+    "address": { "street": "Belbas", "city": "Butwal", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "A" },
+      { "code": "IT220", "title": "Networking", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000045" },
+      { "type": "email", "value": "bishal.oli@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Oli",
+      "relation": "father",
+      "contact": "9800000046"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/18.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in programming fundamentals."
+    ],
+    "created_at": "2024-06-01T32:00:00Z",
+    "updated_at": "2024-06-10T37:00:00Z"
+  },
+  {
+    "student_id": 24,
+    "name": { "first": "Deepika", "last": "Dolma" },
+    "program": "Business Administration",
+    "year": 2,
+    "address": { "street": "Janak Chowk", "city": "Janakpur", "country": "Nepal" },
+    "courses": [
+      { "code": "BA101", "title": "Principles of Management", "grade": "A-" },
+      { "code": "BA204", "title": "Marketing", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000047" },
+      { "type": "email", "value": "deepika.dolma@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Dolma",
+      "relation": "father",
+      "contact": "9800000048"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Business Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/6.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in marketing."
+    ],
+    "created_at": "2024-06-01T33:00:00Z",
+    "updated_at": "2024-06-10T38:00:00Z"
+  },
+  {
+    "student_id": 25,
+    "name": { "first": "Pradeep", "last": "Gautam" },
+    "program": "Civil Engineering",
+    "year": 1,
+    "address": { "street": "Narayan Ghat", "city": "Bharatpur", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "B" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000049" },
+      { "type": "email", "value": "pradeep.gautam@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Gautam",
+      "relation": "father",
+      "contact": "9800000050"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/19.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T34:00:00Z",
+    "updated_at": "2024-06-10T39:00:00Z"
+  },
+  {
+    "student_id": 26,
+    "name": { "first": "Manoj", "last": "Upreti" },
+    "program": "Mechanical Engineering",
+    "year": 2,
+    "address": { "street": "Bhanu Marg", "city": "Tanahun", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A-" },
+      { "code": "ME210", "title": "Fluid Mechanics", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000051" },
+      { "type": "email", "value": "manoj.upreti@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Upreti",
+      "relation": "father",
+      "contact": "9800000052"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/20.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in fluid mechanics."
+    ],
+    "created_at": "2024-06-01T35:00:00Z",
+    "updated_at": "2024-06-10T40:00:00Z"
+  },
+  {
+    "student_id": 27,
+    "name": { "first": "Kiran", "last": "Sapkota" },
+    "program": "Computer Science",
+    "year": 4,
+    "address": { "street": "Chipledhunga", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "CS204", "title": "Algorithms", "grade": "A" },
+      { "code": "CS230", "title": "Databases", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000053" },
+      { "type": "email", "value": "kiran.sapkota@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Sapkota",
+      "relation": "father",
+      "contact": "9800000054"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/21.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in algorithms."
+    ],
+    "created_at": "2024-06-01T36:00:00Z",
+    "updated_at": "2024-06-10T41:00:00Z"
+  },
+  {
+    "student_id": 28,
+    "name": { "first": "Sarita", "last": "Baral" },
+    "program": "Information Technology",
+    "year": 3,
+    "address": { "street": "Sithapaila", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "B+" },
+      { "code": "IT220", "title": "Networking", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000055" },
+      { "type": "email", "value": "sarita.baral@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Baral",
+      "relation": "father",
+      "contact": "9800000056"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/7.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in networking."
+    ],
+    "created_at": "2024-06-01T37:00:00Z",
+    "updated_at": "2024-06-10T42:00:00Z"
+  },
+  {
+    "student_id": 29,
+    "name": { "first": "Sandhya", "last": "Pandey" },
+    "program": "Business Administration",
+    "year": 2,
+    "address": { "street": "Gongabu", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "BA210", "title": "Accounting", "grade": "A-" },
+      { "code": "BA204", "title": "Marketing", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000057" },
+      { "type": "email", "value": "sandhya.pandey@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Pandey",
+      "relation": "father",
+      "contact": "9800000058"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Business Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/8.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in accounting."
+    ],
+    "created_at": "2024-06-01T38:00:00Z",
+    "updated_at": "2024-06-10T43:00:00Z"
+  },
+  {
+    "student_id": 30,
+    "name": { "first": "Indra", "last": "Guragain" },
+    "program": "Civil Engineering",
+    "year": 1,
+    "address": { "street": "Dam Side", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "B+" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000059" },
+      { "type": "email", "value": "indra.guragain@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Guragain",
+      "relation": "father",
+      "contact": "9800000060"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/22.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T39:00:00Z",
+    "updated_at": "2024-06-10T44:00:00Z"
+  },
+  {
+    "student_id": 31,
+    "name": { "first": "Parbati", "last": "Rijal" },
+    "program": "Agriculture",
+    "year": 3,
+    "address": { "street": "Nilgiri Road", "city": "Pokhara", "country": "Nepal" },
+    "courses": [
+      { "code": "AG101", "title": "Soil Science", "grade": "A" },
+      { "code": "AG210", "title": "Crop Production", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000061" },
+      { "type": "email", "value": "parbati.rijal@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Rijal",
+      "relation": "father",
+      "contact": "9800000062"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Agricultural Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/9.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in soil science."
+    ],
+    "created_at": "2024-06-01T40:00:00Z",
+    "updated_at": "2024-06-10T45:00:00Z"
+  },
+  {
+    "student_id": 32,
+    "name": { "first": "Ganesh", "last": "Sigdel" },
+    "program": "Mechanical Engineering",
+    "year": 4,
+    "address": { "street": "Satdobato", "city": "Lalitpur", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A" },
+      { "code": "ME210", "title": "Fluid Mechanics", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000063" },
+      { "type": "email", "value": "ganesh.sigdel@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Sigdel",
+      "relation": "father",
+      "contact": "9800000064"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/23.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in fluid mechanics."
+    ],
+    "created_at": "2024-06-01T41:00:00Z",
+    "updated_at": "2024-06-10T46:00:00Z"
+  },
+  {
+    "student_id": 33,
+    "name": { "first": "Chandra", "last": "Dhungana" },
+    "program": "Electrical Engineering",
+    "year": 2,
+    "address": { "street": "Jamal", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "B+" },
+      { "code": "EE205", "title": "Digital Logic", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000065" },
+      { "type": "email", "value": "chandra.dhungana@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Dhungana",
+      "relation": "father",
+      "contact": "9800000066"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Electronics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/24.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in digital logic."
+    ],
+    "created_at": "2024-06-01T42:00:00Z",
+    "updated_at": "2024-06-10T47:00:00Z"
+  },
+  {
+    "student_id": 34,
+    "name": { "first": "Pooja", "last": "Pathak" },
+    "program": "Computer Science",
+    "year": 3,
+    "address": { "street": "Kalanki", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "A-" },
+      { "code": "CS230", "title": "Databases", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000067" },
+      { "type": "email", "value": "pooja.pathak@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Pathak",
+      "relation": "father",
+      "contact": "9800000068"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/10.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in databases."
+    ],
+    "created_at": "2024-06-01T43:00:00Z",
+    "updated_at": "2024-06-10T48:00:00Z"
+  },
+  {
+    "student_id": 35,
+    "name": { "first": "Sneha", "last": "Jha" },
+    "program": "Information Technology",
+    "year": 1,
+    "address": { "street": "Lagankhel", "city": "Lalitpur", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "B" },
+      { "code": "IT220", "title": "Networking", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000069" },
+      { "type": "email", "value": "sneha.jha@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Jha",
+      "relation": "father",
+      "contact": "9800000070"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/11.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in networking."
+    ],
+    "created_at": "2024-06-01T44:00:00Z",
+    "updated_at": "2024-06-10T49:00:00Z"
+  },
+  {
+    "student_id": 36,
+    "name": { "first": "Sagar", "last": "Kharel" },
+    "program": "Mechanical Engineering",
+    "year": 2,
+    "address": { "street": "Rajmarga", "city": "Hetauda", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A" },
+      { "code": "ME320", "title": "Machine Design", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000071" },
+      { "type": "email", "value": "sagar.kharel@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Kharel",
+      "relation": "father",
+      "contact": "9800000072"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/25.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in thermodynamics."
+    ],
+    "created_at": "2024-06-01T45:00:00Z",
+    "updated_at": "2024-06-10T50:00:00Z"
+  },
+  {
+    "student_id": 37,
+    "name": { "first": "Roshan", "last": "Mahato" },
+    "program": "Business Administration",
+    "year": 4,
+    "address": { "street": "Lahan Road", "city": "Siraha", "country": "Nepal" },
+    "courses": [
+      { "code": "BA101", "title": "Principles of Management", "grade": "A-" },
+      { "code": "BA204", "title": "Marketing", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000073" },
+      { "type": "email", "value": "roshan.mahato@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Mahato",
+      "relation": "father",
+      "contact": "9800000074"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Business Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/26.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in marketing."
+    ],
+    "created_at": "2024-06-01T46:00:00Z",
+    "updated_at": "2024-06-10T51:00:00Z"
+  },
+  {
+    "student_id": 38,
+    "name": { "first": "Bikash", "last": "Pandit" },
+    "program": "Civil Engineering",
+    "year": 3,
+    "address": { "street": "Kamaladi", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "A-" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000075" },
+      { "type": "email", "value": "bikash.pandit@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Pandit",
+      "relation": "father",
+      "contact": "9800000076"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/27.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T47:00:00Z",
+    "updated_at": "2024-06-10T52:00:00Z"
+  },
+  {
+    "student_id": 39,
+    "name": { "first": "Alpana", "last": "Shahi" },
+    "program": "Architecture",
+    "year": 2,
+    "address": { "street": "Bhatbhateni", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "AR101", "title": "Principles of Architecture", "grade": "B" },
+      { "code": "AR210", "title": "Urban Planning", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000077" },
+      { "type": "email", "value": "alpana.shahi@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Shahi",
+      "relation": "father",
+      "contact": "9800000078"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Architecture Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/12.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in urban planning."
+    ],
+    "created_at": "2024-06-01T48:00:00Z",
+    "updated_at": "2024-06-10T53:00:00Z"
+  },
+  {
+    "student_id": 40,
+    "name": { "first": "Ujjwal", "last": "Panta" },
+    "program": "Computer Science",
+    "year": 1,
+    "address": { "street": "Mahaboudha", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "A" },
+      { "code": "CS204", "title": "Algorithms", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000079" },
+      { "type": "email", "value": "ujjwal.panta@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Panta",
+      "relation": "father",
+      "contact": "9800000080"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/28.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in algorithms."
+    ],
+    "created_at": "2024-06-01T49:00:00Z",
+    "updated_at": "2024-06-10T54:00:00Z"
+  },
+  {
+    "student_id": 41,
+    "name": { "first": "Aayush", "last": "Rawal" },
+    "program": "Information Technology",
+    "year": 2,
+    "address": { "street": "Naya Road", "city": "Nepalgunj", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "A-" },
+      { "code": "IT220", "title": "Networking", "grade": "A" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000081" },
+      { "type": "email", "value": "aayush.rawal@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Rawal",
+      "relation": "father",
+      "contact": "9800000082"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/29.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in networking."
+    ],
+    "created_at": "2024-06-01T50:00:00Z",
+    "updated_at": "2024-06-10T55:00:00Z"
+  },
+  {
+    "student_id": 42,
+    "name": { "first": "Bhabesh", "last": "Raut" },
+    "program": "Electrical Engineering",
+    "year": 3,
+    "address": { "street": "Parasi Road", "city": "Nawalparasi", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "B" },
+      { "code": "EE240", "title": "Signals", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000083" },
+      { "type": "email", "value": "bhabesh.raut@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Raut",
+      "relation": "father",
+      "contact": "9800000084"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Electronics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/30.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in circuits."
+    ],
+    "created_at": "2024-06-01T51:00:00Z",
+    "updated_at": "2024-06-10T56:00:00Z"
+  },
+  {
+    "student_id": 43,
+    "name": { "first": "Nischal", "last": "Chaudhary" },
+    "program": "Mechanical Engineering",
+    "year": 1,
+    "address": { "street": "Gorkha Road", "city": "Gorkha", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A" },
+      { "code": "ME210", "title": "Fluid Mechanics", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000085" },
+      { "type": "email", "value": "nischal.chaudhary@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Chaudhary",
+      "relation": "father",
+      "contact": "9800000086"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/31.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in fluid mechanics."
+    ],
+    "created_at": "2024-06-01T52:00:00Z",
+    "updated_at": "2024-06-10T57:00:00Z"
+  },
+  {
+    "student_id": 44,
+    "name": { "first": "Pratibha", "last": "Kafle" },
+    "program": "Business Administration",
+    "year": 2,
+    "address": { "street": "Tindhara", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "BA101", "title": "Principles of Management", "grade": "B+" },
+      { "code": "BA210", "title": "Accounting", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000087" },
+      { "type": "email", "value": "pratibha.kafle@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Kafle",
+      "relation": "father",
+      "contact": "9800000088"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Business Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/13.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in accounting."
+    ],
+    "created_at": "2024-06-01T53:00:00Z",
+    "updated_at": "2024-06-10T58:00:00Z"
+  },
+  {
+    "student_id": 45,
+    "name": { "first": "Rekha", "last": "Kandel" },
+    "program": "Civil Engineering",
+    "year": 3,
+    "address": { "street": "Damauli Bazaar", "city": "Tanahun", "country": "Nepal" },
+    "courses": [
+      { "code": "CE110", "title": "Structural Analysis", "grade": "A" },
+      { "code": "CE220", "title": "Concrete Technology", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000089" },
+      { "type": "email", "value": "rekha.kandel@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Kandel",
+      "relation": "father",
+      "contact": "9800000090"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Civil Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/14.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in structural analysis."
+    ],
+    "created_at": "2024-06-01T54:00:00Z",
+    "updated_at": "2024-06-10T59:00:00Z"
+  },
+  {
+    "student_id": 46,
+    "name": { "first": "Sabin", "last": "Shakya" },
+    "program": "Architecture",
+    "year": 1,
+    "address": { "street": "Basantapur", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "AR101", "title": "Principles of Architecture", "grade": "B" },
+      { "code": "AR210", "title": "Urban Planning", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000091" },
+      { "type": "email", "value": "sabin.shakya@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Shakya",
+      "relation": "father",
+      "contact": "9800000092"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Architecture Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/32.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in urban planning."
+    ],
+    "created_at": "2024-06-01T55:00:00Z",
+    "updated_at": "2024-06-10T60:00:00Z"
+  },
+  {
+    "student_id": 47,
+    "name": { "first": "Ashish", "last": "Basnyat" },
+    "program": "Computer Science",
+    "year": 2,
+    "address": { "street": "Budhanilkantha", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "A-" },
+      { "code": "CS230", "title": "Databases", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000093" },
+      { "type": "email", "value": "ashish.basnyat@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Basnyat",
+      "relation": "father",
+      "contact": "9800000094"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Coding Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/33.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in algorithms."
+    ],
+    "created_at": "2024-06-01T56:00:00Z",
+    "updated_at": "2024-06-10T61:00:00Z"
+  },
+  {
+    "student_id": 48,
+    "name": { "first": "Dilip", "last": "Pariyar" },
+    "program": "Information Technology",
+    "year": 4,
+    "address": { "street": "Naikap", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "IT100", "title": "Programming Fundamentals", "grade": "A" },
+      { "code": "IT220", "title": "Networking", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000095" },
+      { "type": "email", "value": "dilip.pariyar@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Pariyar",
+      "relation": "father",
+      "contact": "9800000096"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Cyber Security Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/34.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in programming fundamentals."
+    ],
+    "created_at": "2024-06-01T57:00:00Z",
+    "updated_at": "2024-06-10T62:00:00Z"
+  },
+  {
+    "student_id": 49,
+    "name": { "first": "Sudeep", "last": "Gurung" },
+    "program": "Mechanical Engineering",
+    "year": 2,
+    "address": { "street": "Lumbini Road", "city": "Lumbini", "country": "Nepal" },
+    "courses": [
+      { "code": "ME101", "title": "Thermodynamics", "grade": "A" },
+      { "code": "ME320", "title": "Machine Design", "grade": "A-" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000097" },
+      { "type": "email", "value": "sudeep.gurung@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Gurung",
+      "relation": "father",
+      "contact": "9800000098"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Mechanical Engineering Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/35.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in thermodynamics."
+    ],
+    "created_at": "2024-06-01T58:00:00Z",
+    "updated_at": "2024-06-10T63:00:00Z"
+  },
+  {
+    "student_id": 50,
+    "name": { "first": "Kalpana", "last": "Ghale" },
+    "program": "Business Administration",
+    "year": 3,
+    "address": { "street": "Satdobato", "city": "Lalitpur", "country": "Nepal" },
+    "courses": [
+      { "code": "BA101", "title": "Principles of Management", "grade": "A" },
+      { "code": "BA204", "title": "Marketing", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000099" },
+      { "type": "email", "value": "kalpana.ghale@example.com" }
+    ],
+    "guardian": {
+      "name": "Bimal Ghale",
+      "relation": "father",
+      "contact": "9800000100"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Business Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/women/15.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Good in marketing."
+    ],
+    "created_at": "2024-06-01T59:00:00Z",
+    "updated_at": "2024-06-10T64:00:00Z"
+  }
+]

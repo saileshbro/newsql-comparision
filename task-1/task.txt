@@ -1,0 +1,18 @@
+Task 1: Document-Oriented Databases using MongoDB
+Objectives:
+· Understand document data modeling
+· Perform CRUD operations
+· Use the aggregation framework
+Tools: MongoDB Compass or Atlas Cloud, Mongo Shell
+Sub-Tasks:
+- Create a database `university` and collection `students`
+-  Insert student records with nested documents and arrays
+-  Perform update and delete operations
+-  Query students based on program and courses
+-  Use aggregation to count students per city
+Assessment:
+· CRUD operations
+· Aggregation pipeline query
+Submission:
+· Screenshots of queries and outputs
+· JSON file of inserted documents

@@ -1,0 +1,14 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+- use docker to run databases whenever possible
+- include docker compose file in the project
+- for each task, create a separate docker compose file
+- update the findings/code in a separate file
+- use volumes to persist data
+- list all the steps in the readme markdown file
+- use typescript for code
+- use bun for a js/ts runtime
+- when upserting always use the examples for names and everything related to Nepali. eg. Laxman, Sailesh, Suraj, Arjun, etc. Use hindu names for names, nepali address for addresses, etc. and all other context related to nepal and nepali culture
