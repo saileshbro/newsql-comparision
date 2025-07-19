@@ -1,0 +1,3 @@
+Professor	Course
+"Dr. Ram Prasad"	"Algorithms"
+"Dr. Ram Prasad"	"Database Systems"

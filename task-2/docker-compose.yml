@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  cassandra:
+    image: cassandra:4.1
+    container_name: task2-cassandra
+    restart: unless-stopped
+    ports:
+      - "9042:9042"
+      - "7000:7000"
+    volumes:
+      - cassandra_task2_data:/var/lib/cassandra
+    environment:
+      - CASSANDRA_CLUSTER_NAME=TestCluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_NUM_TOKENS=128
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  cassandra_task2_data:

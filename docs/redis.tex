@@ -1,0 +1,345 @@
+\chapter{Key-Value Stores using Redis}
+
+Redis (Remote Dictionary Server) is an open-source, in-memory data structure store that can be used as a database, cache, and message broker. Redis supports various data structures including strings, hashes, lists, sets, sorted sets, and more. Its in-memory nature makes it extremely fast, with typical operation times in microseconds. Redis is particularly well-suited for applications requiring high-speed data access, caching, session management, and real-time analytics.
+
+\section{Basic Key-Value Operations}
+
+\subsection{Simple String Operations}
+
+Redis strings are the most basic Redis data type, representing a sequence of bytes. The following operations demonstrate setting and getting simple key-value pairs:
+
+\begin{minted}[linenos,breaklines]{text}
+# Set simple string values
+SET student:1001 "John Doe"
+SET student:1002 "Jane Smith"
+SET student:1003 "Bob Johnson"
+
+# Get simple values
+GET student:1001
+GET student:1002
+GET student:1003
+
+# Set multiple keys at once
+MSET course:CS101 "Introduction to Programming" course:CS102 "Data Structures" course:CS103 "Algorithms"
+
+# Get multiple keys at once
+MGET course:CS101 course:CS102 course:CS103
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Command} & \textbf{Result} \\
+    \hline
+    SET student:\texttt{1001} "\texttt{John Doe}" & \texttt{OK} \\
+    SET student:\texttt{1002} "\texttt{Jane Smith}" & \texttt{OK} \\
+    SET student:\texttt{1003} "\texttt{Bob Johnson}" & \texttt{OK} \\
+    GET student:\texttt{1001} & "\texttt{John Doe}" \\
+    GET student:\texttt{1002} & "\texttt{Jane Smith}" \\
+    GET student:\texttt{1003} & "\texttt{Bob Johnson}" \\
+    \hline
+  \end{tabular}
+  \caption{Basic string operations results. See Appendix Figure~\ref{fig:basic-set-get} for screenshot.}
+\end{table}
+
+\subsection{Hash Operations}
+
+Redis hashes are maps between string fields and string values, making them perfect for representing objects like user profiles or student records:
+
+\begin{minted}[linenos,breaklines]{text}
+# Create hash for student profile
+HSET student:profile:1001 name "John Doe" age 20 major "Computer Science" gpa 3.8
+HSET student:profile:1002 name "Jane Smith" age 21 major "Information Technology" gpa 3.9
+HSET student:profile:1003 name "Bob Johnson" age 19 major "Software Engineering" gpa 3.7
+
+# Get entire hash
+HGETALL student:profile:1001
+HGETALL student:profile:1002
+
+# Get specific fields from hash
+HGET student:profile:1001 name
+HMGET student:profile:1002 name major gpa
+
+# Set multiple hash fields
+HMSET student:profile:1004 name "Alice Brown" age 22 major "Data Science" gpa 3.95 year "Senior"
+
+# Get all hash keys and values
+HKEYS student:profile:1001
+HVALS student:profile:1002
+
+# Check if hash field exists
+HEXISTS student:profile:1001 name
+HEXISTS student:profile:1001 email
+
+# Increment numeric field in hash
+HINCRBY student:profile:1001 age 1
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Operation} & \textbf{Result} \\
+    \hline
+    HSET student:profile:\texttt{1001} ... & \texttt{4} fields set \\
+    HGET student:profile:\texttt{1001} name & "\texttt{John Doe}" \\
+    HMGET student:profile:\texttt{1002} name major gpa & ["\texttt{Jane Smith}", "\texttt{Information Technology}", "\texttt{3.9}"] \\
+    HEXISTS student:profile:\texttt{1001} name & \texttt{1} (\texttt{true}) \\
+    HEXISTS student:profile:\texttt{1001} email & \texttt{0} (\texttt{false}) \\
+    HINCRBY student:profile:\texttt{1001} age \texttt{1} & \texttt{21} \\
+    \hline
+  \end{tabular}
+  \caption{Hash operations results. See Appendix Figure~\ref{fig:hash-operations} for screenshot.}
+\end{table}
+
+\section{Session Management with TTL}
+
+One of Redis's most powerful features is the ability to automatically expire keys after a specified time period. This makes it ideal for session management, caching, and temporary data storage.
+
+\subsection{Basic Session Creation}
+
+The following commands demonstrate creating user sessions with automatic expiration:
+
+\begin{minted}[linenos,breaklines]{text}
+# Create login sessions with 30 second TTL
+SET session:user1001 "John Doe logged in" EX 30
+SET session:user1002 "Jane Smith logged in" EX 30
+SET session:user1003 "Bob Johnson logged in" EX 30
+
+# Check current sessions
+GET session:user1001
+GET session:user1002
+GET session:user1003
+
+# Check TTL for sessions
+TTL session:user1001
+TTL session:user1002
+TTL session:user1003
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Command} & \textbf{Result} \\
+    \hline
+    SET session:user\texttt{1001} "..." EX \texttt{30} & \texttt{OK} \\
+    GET session:user\texttt{1001} & "\texttt{John Doe logged in}" \\
+    TTL session:user\texttt{1001} & \texttt{11} (seconds remaining) \\
+    TTL session:user\texttt{1002} & \texttt{11} (seconds remaining) \\
+    \hline
+  \end{tabular}
+  \caption{Basic session management results. See Appendix Figure~\ref{fig:session-details} for screenshot.}
+\end{table}
+
+\subsection{Detailed Session Data}
+
+For more complex session management, Redis hashes can store detailed session information while maintaining TTL functionality:
+
+\begin{minted}[linenos,breaklines]{text}
+# Create detailed session data using hashes with TTL
+HSET session:detailed:user1001 user_id 1001 username "john_doe" login_time "2024-01-15 10:30:00" ip_address "192.168.1.100"
+EXPIRE session:detailed:user1001 45
+
+HSET session:detailed:user1002 user_id 1002 username "jane_smith" login_time "2024-01-15 10:35:00" ip_address "192.168.1.101"
+EXPIRE session:detailed:user1002 45
+
+# Check detailed session data
+HGETALL session:detailed:user1001
+TTL session:detailed:user1001
+
+# Create shopping cart session with TTL
+HSET cart:session:user1001 item1 "Laptop" item2 "Mouse" item3 "Keyboard" total 1500
+EXPIRE cart:session:user1001 300
+
+# Check cart session
+HGETALL cart:session:user1001
+TTL cart:session:user1001
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Field} & \textbf{Value} \\
+    \hline
+    user\_id & \texttt{1001} \\
+    username & \texttt{john\_doe} \\
+    login\_time & \texttt{2024-01-15 10:30:00} \\
+    ip\_address & \texttt{192.168.1.100} \\
+    TTL & \texttt{32} seconds \\
+    \hline
+  \end{tabular}
+  \caption{Detailed session data structure.}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Cart Item} & \textbf{Value} \\
+    \hline
+    item\texttt{1} & \texttt{Laptop} \\
+    item\texttt{2} & \texttt{Mouse} \\
+    item\texttt{3} & \texttt{Keyboard} \\
+    total & \texttt{1500} \\
+    TTL & \texttt{293} seconds \\
+    \hline
+  \end{tabular}
+  \caption{Shopping cart session data with 5-minute TTL.}
+\end{table}
+
+\subsection{Session Expiration}
+
+After the TTL expires, Redis automatically removes the keys. The following demonstrates checking expired sessions:
+
+\begin{minted}[linenos,breaklines]{text}
+# After 30+ seconds, check session expiration
+GET session:user1001
+GET session:user1002
+TTL session:user1001
+TTL session:user1002
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Command} & \textbf{Result} \\
+    \hline
+    GET session:user\texttt{1001} & (\texttt{nil}) \\
+    GET session:user\texttt{1002} & (\texttt{nil}) \\
+    TTL session:user\texttt{1001} & \texttt{-2} (key expired) \\
+    TTL session:user\texttt{1002} & \texttt{-2} (key expired) \\
+    \hline
+  \end{tabular}
+  \caption{Session expiration results. See Appendix Figure~\ref{fig:session-expiration} for screenshot.}
+\end{table}
+
+A TTL value of -2 indicates that the key has expired and been automatically deleted by Redis.
+
+\section{Visitor Tracking with INCR Operations}
+
+Redis provides atomic increment and decrement operations that are perfect for counters, analytics, and tracking systems. These operations are thread-safe and can handle high-concurrency scenarios.
+
+\subsection{Basic Visitor Counting}
+
+\begin{minted}[linenos,breaklines]{text}
+# Initialize visitor counter
+SET visitors:total 0
+
+# Simulate page visits
+INCR visitors:total
+INCR visitors:total
+INCR visitors:total
+INCR visitors:total
+INCR visitors:total
+
+# Check total visitors
+GET visitors:total
+
+# Page-specific visitor tracking
+INCR visitors:page:home
+INCR visitors:page:home
+INCR visitors:page:about
+INCR visitors:page:products
+
+# Check page-specific visitors
+GET visitors:page:home
+GET visitors:page:about
+GET visitors:page:products
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Counter} & \textbf{Value} \\
+    \hline
+    visitors:total & \texttt{5} \\
+    visitors:page:home & \texttt{2} \\
+    visitors:page:about & \texttt{1} \\
+    visitors:page:products & \texttt{1} \\
+    \hline
+  \end{tabular}
+  \caption{Basic visitor counting results.}
+\end{table}
+
+\subsection{Advanced Analytics Tracking}
+
+Redis increment operations support various analytics patterns:
+
+\begin{minted}[linenos,breaklines]{text}
+# Daily visitor tracking
+INCR visitors:daily:2024-01-15
+INCR visitors:daily:2024-01-15
+INCR visitors:daily:2024-01-15
+GET visitors:daily:2024-01-15
+
+# Hourly visitor tracking
+INCR visitors:hourly:2024-01-15:10
+INCR visitors:hourly:2024-01-15:10
+GET visitors:hourly:2024-01-15:10
+
+# User-specific visit tracking
+INCR user:1001:visits
+GET user:1001:visits
+
+# Increment by specific amount
+INCRBY visitors:total 10
+GET visitors:total
+
+# Browser and device tracking
+INCR browser:chrome
+GET browser:chrome
+INCR visitors:country:USA
+GET visitors:country:USA
+INCR visitors:device:desktop
+INCR visitors:device:mobile
+GET visitors:device:desktop
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Metric} & \textbf{Value} \\
+    \hline
+    visitors:daily:\texttt{2024-01-15} & \texttt{3} \\
+    visitors:hourly:\texttt{2024-01-15:10} & \texttt{2} \\
+    user:\texttt{1001}:visits & \texttt{1} \\
+    visitors:total (after INCRBY \texttt{10}) & \texttt{15} \\
+    browser:chrome & \texttt{1} \\
+    visitors:country:USA & \texttt{1} \\
+    visitors:device:desktop & \texttt{2} \\
+    \hline
+  \end{tabular}
+  \caption{Advanced analytics tracking results. See Appendix Figure~\ref{fig:visitor-tracking} for screenshot.}
+\end{table}
+
+\section{Performance Analysis}
+
+The Redis implementation demonstrated several key performance characteristics. The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision.git/tree/main/task-4/basic-operations.redis}.
+
+\begin{itemize}
+    \item \textbf{Ultra-Fast Access}: All operations showed sub-millisecond response times due to in-memory storage
+    \item \textbf{Atomic Operations}: INCR operations provided thread-safe counting with guaranteed consistency
+    \item \textbf{TTL Efficiency}: Automatic key expiration worked seamlessly without performance overhead
+    \item \textbf{Hash Performance}: Complex object storage with field-level access showed excellent performance
+    \item \textbf{Memory Management}: Automatic cleanup of expired keys maintained optimal memory usage
+\end{itemize}
+
+\section{Use Cases and Applications}
+
+Redis's key-value architecture makes it particularly suitable for:
+
+\begin{itemize}
+    \item \textbf{Caching}: High-speed data caching with automatic expiration and invalidation
+    \item \textbf{Session Management}: User session storage with automatic cleanup and TTL support
+    \item \textbf{Real-Time Analytics}: Atomic counters for visitor tracking and metrics collection
+    \item \textbf{Leaderboards}: Sorted sets for gaming and ranking applications
+    \item \textbf{Message Queues}: Pub/sub messaging for real-time communication systems
+\end{itemize}
+
+The session management and visitor tracking implementation demonstrates how Redis excels at high-speed data access with atomic operations, automatic expiration, and excellent performance characteristics, making it ideal for applications requiring real-time data processing and caching.

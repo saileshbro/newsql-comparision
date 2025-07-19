@@ -1,0 +1,354 @@
+\chapter{Wide-Column Databases using Apache Cassandra}
+
+Apache Cassandra is a distributed NoSQL database designed for high availability and linear scalability. It uses a wide-column store data model where data is organized in tables with rows and dynamic columns, with each row potentially having different columns. Cassandra's architecture is optimized for write-heavy workloads and provides eventual consistency, making it ideal for applications requiring high availability and horizontal scaling.
+
+\section{Database Schema}
+
+\subsection{Keyspace and Table Design}
+The database schema is designed to optimize for the typical query patterns in an attendance system. The complete schema definition is shown below:
+
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+-- Create keyspace
+CREATE KEYSPACE IF NOT EXISTS university
+WITH replication = {
+    'class': 'SimpleStrategy',
+    'replication_factor': 1
+};
+
+-- Use the keyspace
+USE university;
+
+-- Create attendance table
+-- Partition key: student_id (groups attendance records by student)
+-- Clustering keys: course_code, date (orders records within partition)
+CREATE TABLE IF NOT EXISTS attendance (
+    student_id text,
+    course_code text,
+    date date,
+    present boolean,
+    PRIMARY KEY (student_id, course_code, date)
+) WITH CLUSTERING ORDER BY (course_code ASC, date DESC);
+
+-- Create index for querying by course_code
+CREATE INDEX IF NOT EXISTS idx_attendance_course
+ON attendance (course_code);
+
+-- Create index for querying by date
+CREATE INDEX IF NOT EXISTS idx_attendance_date
+ON attendance (date);
+
+-- Display table schema
+DESCRIBE TABLE attendance;
+\end{minted}
+
+\subsection{Schema Design Rationale}
+
+\subsubsection{Primary Key Design}
+The primary key consists of:
+\begin{itemize}
+    \item \textbf{Partition Key:} \texttt{student\_id} - Groups all attendance records for a student together
+    \item \textbf{Clustering Keys:} \texttt{course\_code, date} - Orders records within each partition
+\end{itemize}
+
+This design enables efficient queries for:
+\begin{itemize}
+    \item All attendance records for a specific student
+    \item Attendance records for a student in a specific course
+    \item Attendance records for a student on specific dates
+\end{itemize}
+
+\subsubsection{Secondary Indexes}
+Two secondary indexes are created to support additional query patterns:
+\begin{itemize}
+    \item \texttt{idx\_attendance\_course} - Enables queries by course code
+    \item \texttt{idx\_attendance\_date} - Enables queries by date range
+\end{itemize}
+
+\section{Data Model}
+
+\subsection{Sample Data Structure}
+The system uses a comprehensive attendance dataset covering multiple students across different departments and courses. Below is a representative sample of the data structure (complete dataset available in Appendix B):
+
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{typescript}
+export const attendanceData = [
+  // Student CS001 attendance records
+  { student_id: 'CS001', course_code: 'CS101', date: '2024-01-15', present: true },
+  { student_id: 'CS001', course_code: 'CS101', date: '2024-01-16', present: false },
+  { student_id: 'CS001', course_code: 'CS102', date: '2024-01-15', present: true },
+
+  // Student CS002 attendance records
+  { student_id: 'CS002', course_code: 'CS101', date: '2024-01-15', present: false },
+  { student_id: 'CS002', course_code: 'CS103', date: '2024-01-15', present: true },
+
+  // Students from other departments: IT001, EE001, ME001
+  // Complete dataset available in Appendix B (Section B.2)
+  // Total: 22 attendance records across 5 students and 8 courses
+];
+\end{minted}
+
+\section{Database Operations}
+
+\subsection{Database Setup and Connection}
+
+\subsubsection{Connection Configuration}
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{typescript}
+import { Client } from 'cassandra-driver';
+
+export async function connectToCassandra(): Promise<Client> {
+  const client = new Client({
+    contactPoints: ['127.0.0.1'],
+    localDataCenter: 'datacenter1',
+    keyspace: 'university'
+  });
+
+  try {
+    await client.connect();
+    console.log('[SUCCESS] Connected to Cassandra');
+    return client;
+  } catch (error) {
+    console.error('[ERROR] Error connecting to Cassandra:', error);
+    throw error;
+  }
+}
+\end{minted}
+
+\subsubsection{Database Initialization}
+The setup process includes creating the keyspace, table, and indexes as shown in Figure~\ref{fig:task2-create-database}.
+
+\subsection{Data Insertion Operations}
+
+\subsubsection{Bulk Data Insertion}
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{typescript}
+async function insertAttendanceData() {
+  let client: any;
+  try {
+    client = await connectToCassandra();
+
+    console.log('[INFO] Inserting attendance data...');
+
+    // Prepare the insert statement
+    const insertQuery = `
+      INSERT INTO attendance (student_id, course_code, date, present)
+      VALUES (?, ?, ?, ?)
+    `;
+
+    // Insert each record
+    for (const record of attendanceData) {
+      await client.execute(insertQuery, [
+        record.student_id,
+        record.course_code,
+        record.date,
+        record.present
+      ]);
+      console.log(`[SUCCESS] Inserted: ${record.student_id} - ${record.course_code} - ${record.date} - ${record.present ? 'Present' : 'Absent'}`);
+    }
+
+    console.log(`[SUCCESS] Successfully inserted ${attendanceData.length} attendance records!`);
+
+    // Display total count
+    const countResult = await client.execute('SELECT COUNT(*) FROM attendance');
+    console.log(`[INFO] Total attendance records in database: ${countResult.rows[0].count}`);
+
+  } catch (error) {
+    console.error('[ERROR] Error inserting data:', error);
+  } finally {
+    if (client) {
+      await disconnectFromCassandra(client);
+    }
+  }
+}
+\end{minted}
+
+The data insertion process is demonstrated in Figure~\ref{fig:task2-insert-data}.
+
+\section{Query Operations}
+
+\subsection{Basic Queries}
+
+\subsubsection{Count Query}
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+SELECT COUNT(*) FROM attendance;
+\end{minted}
+
+The count query returns the total number of attendance records in the database:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+\textbf{COUNT(*)} \\
+\hline
+\texttt{22} \\
+\hline
+\end{tabular}
+\caption{Count Query Result - Total Attendance Records}
+\end{table}
+
+This confirms that all 22 attendance records have been successfully inserted into the database. The complete execution screenshot is available in Appendix B (Figure~\ref{fig:task2-count-query}).
+
+\subsubsection{Query by Student ID}
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+SELECT * FROM attendance WHERE student_id = 'CS001';
+\end{minted}
+
+This query efficiently retrieves all attendance records for a specific student, leveraging the partition key design. The query returns:
+
+\begin{table}[H]
+  \centering
+  \footnotesize
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{student\_id} & \textbf{course\_code} & \textbf{date} & \textbf{present} \\
+    \hline
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-17}    & \texttt{true}             \\
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-16}    & \texttt{false}            \\
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{CS001}                & \texttt{CS102}                 & \texttt{2024-01-16}    & \texttt{true}             \\
+    \texttt{CS001}                & \texttt{CS102}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \hline
+  \end{tabular}
+  \caption{Query results for student CS001 (5 records returned)}
+\end{table}
+
+Note the clustering order: records are ordered by course\_code ASC, then date DESC within each course. The complete execution screenshot is available in Appendix B (Figure~\ref{fig:task2-select-student}).
+
+\subsubsection{Query by Student ID and Course}
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+SELECT * FROM attendance WHERE student_id = 'CS001' AND course_code = 'CS101';
+\end{minted}
+
+This query uses both the partition key and clustering key for optimal performance. The result set:
+
+\begin{table}[H]
+  \centering
+  \footnotesize
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{student\_id} & \textbf{course\_code} & \textbf{date} & \textbf{present} \\
+    \hline
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-17}    & \texttt{true}             \\
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-16}    & \texttt{false}            \\
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \hline
+  \end{tabular}
+  \caption{Query results for student CS001 in course CS101 (3 records returned)}
+\end{table}
+
+This demonstrates the efficiency of compound key queries, retrieving only the specific student-course combination. The execution screenshot is available in Appendix B (Figure~\ref{fig:task2-select-student-course}).
+
+\subsection{Advanced Query Operations}
+
+\subsubsection{Date Range Queries}
+Using secondary indexes, the system supports queries by date ranges. For example, querying attendance records for a specific date:
+
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+SELECT * FROM attendance WHERE date = '2024-01-15' ALLOW FILTERING;
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \footnotesize
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{student\_id} & \textbf{course\_code} & \textbf{date} & \textbf{present} \\
+    \hline
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{CS001}                & \texttt{CS102}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{CS002}                & \texttt{CS101}                 & \texttt{2024-01-15}    & \texttt{false}            \\
+    \texttt{CS002}                & \texttt{CS103}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{IT001}                & \texttt{IT201}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{IT001}                & \texttt{IT202}                 & \texttt{2024-01-15}    & \texttt{false}            \\
+    \texttt{EE001}                & \texttt{EE301}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{EE001}                & \texttt{EE302}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{ME001}                & \texttt{ME401}                 & \texttt{2024-01-15}    & \texttt{false}            \\
+    \texttt{ME001}                & \texttt{ME402}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \hline
+  \end{tabular}
+  \caption{All attendance records for January 15, 2024 (10 records)}
+\end{table}
+
+This query uses the secondary index on the date field for cross-partition queries. The execution screenshot is available in Appendix B (Figure~\ref{fig:task2-date-range}).
+
+\subsubsection{Course-Based Queries}
+The course code index enables efficient queries across all students for specific courses:
+
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+SELECT * FROM attendance WHERE course_code = 'CS101' ALLOW FILTERING;
+\end{minted}
+
+This query returns all students enrolled in CS101:
+
+\begin{table}[H]
+  \centering
+  \footnotesize
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{student\_id} & \textbf{course\_code} & \textbf{date} & \textbf{present} \\
+    \hline
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-17}    & \texttt{true}             \\
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-16}    & \texttt{false}            \\
+    \texttt{CS001}                & \texttt{CS101}                 & \texttt{2024-01-15}    & \texttt{true}             \\
+    \texttt{CS002}                & \texttt{CS101}                 & \texttt{2024-01-17}    & \texttt{true}             \\
+    \texttt{CS002}                & \texttt{CS101}                 & \texttt{2024-01-16}    & \texttt{true}             \\
+    \texttt{CS002}                & \texttt{CS101}                 & \texttt{2024-01-15}    & \texttt{false}            \\
+    \hline
+  \end{tabular}
+  \caption{Course-based query results for CS101 (6 records)}
+\end{table}
+
+The execution screenshot is available in Appendix B (Figure~\ref{fig:task2-where-query}).
+
+\subsubsection{Grouping and Aggregation}
+Cassandra supports various grouping operations for analytical queries. For example, counting attendance by student:
+
+\begin{minted}[breaklines=true,fontsize=\footnotesize,frame=lines,linenos]{sql}
+SELECT student_id, COUNT(*) as total_records
+FROM attendance
+GROUP BY student_id;
+\end{minted}
+
+This produces the following aggregated results:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{student\_id} & \textbf{total\_records} \\
+    \hline
+    \texttt{CS001}                & \texttt{5}                       \\
+    \texttt{CS002}                & \texttt{5}                       \\
+    \texttt{IT001}                & \texttt{4}                       \\
+    \texttt{EE001}                & \texttt{4}                       \\
+    \texttt{ME001}                & \texttt{4}                       \\
+    \hline
+  \end{tabular}
+  \caption{Attendance record count by student}
+\end{table}
+
+This demonstrates Cassandra's ability to perform grouping operations efficiently when the GROUP BY clause matches the partition key. The execution screenshot is available in Appendix B (Figure~\ref{fig:task2-student-course-group}).
+
+\section{Performance Analysis}
+
+The Cassandra implementation demonstrated several key performance characteristics. The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision.git/tree/main/task-2/src/attendance_data.ts}.
+
+\begin{itemize}
+    \item \textbf{Partition Key Efficiency}: Queries using the partition key (student\_id) showed optimal performance with O(1) access patterns
+    \item \textbf{Clustering Key Optimization}: Compound queries using both partition and clustering keys demonstrated excellent performance
+    \item \textbf{Secondary Index Performance}: Queries using secondary indexes (course\_code, date) provided efficient cross-partition access
+    \item \textbf{Write Performance}: Bulk insert operations showed excellent throughput for time-series data
+    \item \textbf{Scalability Characteristics}: The partition key design enables linear horizontal scaling
+\end{itemize}
+
+\section{Use Cases and Applications}
+
+Cassandra's wide-column architecture makes it particularly suitable for:
+
+\begin{itemize}
+    \item \textbf{Time-Series Data}: The clustering by date supports efficient chronological data access
+    \item \textbf{Event Logging}: High-write throughput with partition-based distribution
+    \item \textbf{Recommendation Systems}: Efficient storage and retrieval of user-item interactions
+    \item \textbf{Sensor Data Collection}: Scalable storage for IoT and monitoring applications
+    \item \textbf{Analytics Platforms}: Support for large-scale data aggregation and analysis
+\end{itemize}
+
+The attendance tracking system implementation demonstrates how Cassandra excels at handling high-volume, time-series data with excellent write performance and horizontal scalability, making it ideal for applications requiring high availability and linear scaling.

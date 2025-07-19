@@ -1,0 +1,147 @@
+# Visitor Tracking with INCR Operations
+
+# ===== VISITOR COUNTER =====
+
+# Initialize visitor counter
+SET visitors:total 0
+
+# Simulate page visits
+INCR visitors:total
+INCR visitors:total
+INCR visitors:total
+INCR visitors:total
+INCR visitors:total
+
+# Check total visitors
+GET visitors:total
+
+# Page-specific visitor tracking
+INCR visitors:page:home
+INCR visitors:page:home
+INCR visitors:page:home
+INCR visitors:page:about
+INCR visitors:page:contact
+INCR visitors:page:products
+INCR visitors:page:products
+INCR visitors:page:products
+INCR visitors:page:products
+
+# Check page-specific visitors
+GET visitors:page:home
+GET visitors:page:about
+GET visitors:page:contact
+GET visitors:page:products
+
+# Daily visitor tracking
+INCR visitors:daily:2024-01-15
+INCR visitors:daily:2024-01-15
+INCR visitors:daily:2024-01-15
+INCR visitors:daily:2024-01-16
+INCR visitors:daily:2024-01-16
+
+# Check daily visitors
+GET visitors:daily:2024-01-15
+GET visitors:daily:2024-01-16
+
+# Hourly visitor tracking
+INCR visitors:hourly:2024-01-15:10
+INCR visitors:hourly:2024-01-15:10
+INCR visitors:hourly:2024-01-15:11
+INCR visitors:hourly:2024-01-15:11
+INCR visitors:hourly:2024-01-15:11
+INCR visitors:hourly:2024-01-15:11
+
+# Check hourly visitors
+GET visitors:hourly:2024-01-15:10
+GET visitors:hourly:2024-01-15:11
+
+# User-specific visit tracking
+INCR user:1001:visits
+INCR user:1001:visits
+INCR user:1001:visits
+INCR user:1002:visits
+INCR user:1002:visits
+INCR user:1003:visits
+
+# Check user visit counts
+GET user:1001:visits
+GET user:1002:visits
+GET user:1003:visits
+
+# Increment by specific amount
+INCRBY visitors:total 10
+GET visitors:total
+
+INCRBY visitors:page:home 5
+GET visitors:page:home
+
+# Decrement counter
+DECR visitors:page:about
+GET visitors:page:about
+
+DECRBY visitors:page:contact 2
+GET visitors:page:contact
+
+# ===== ADVANCED VISITOR ANALYTICS =====
+
+# Browser tracking
+INCR browser:chrome
+INCR browser:chrome
+INCR browser:chrome
+INCR browser:firefox
+INCR browser:firefox
+INCR browser:safari
+INCR browser:edge
+
+# Check browser statistics
+GET browser:chrome
+GET browser:firefox
+GET browser:safari
+GET browser:edge
+
+# Country/Region tracking
+INCR visitors:country:USA
+INCR visitors:country:USA
+INCR visitors:country:USA
+INCR visitors:country:Canada
+INCR visitors:country:Canada
+INCR visitors:country:UK
+INCR visitors:country:Germany
+
+# Check country statistics
+GET visitors:country:USA
+GET visitors:country:Canada
+GET visitors:country:UK
+GET visitors:country:Germany
+
+# Mobile vs Desktop tracking
+INCR visitors:device:desktop
+INCR visitors:device:desktop
+INCR visitors:device:desktop
+INCR visitors:device:mobile
+INCR visitors:device:mobile
+INCR visitors:device:mobile
+INCR visitors:device:mobile
+INCR visitors:device:tablet
+
+# Check device statistics
+GET visitors:device:desktop
+GET visitors:device:mobile
+GET visitors:device:tablet
+
+# Real-time analytics with hash
+HMSET analytics:realtime total_visitors 25 online_now 8 page_views 156 unique_visitors 18
+HINCRBY analytics:realtime total_visitors 1
+HINCRBY analytics:realtime page_views 3
+HINCRBY analytics:realtime online_now 2
+
+HGETALL analytics:realtime
+
+# Get all visitor-related keys
+KEYS visitors:*
+KEYS user:*:visits
+KEYS browser:*
+KEYS analytics:*
+
+# Summary of all counters
+MGET visitors:total visitors:page:home visitors:page:products visitors:daily:2024-01-15

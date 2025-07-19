@@ -1,0 +1,10 @@
+  Balance Distribution
+(1 row)
+
+Time: 3ms total (execution 2ms / network 1ms)
+
+        balance_category        | account_count |    average_balance
+--------------------------------+---------------+------------------------
+  Medium (Rs. 80,000 - 120,000) |             8 | 101000.00000000000000
+  High (> Rs. 120,000)          |             2 | 141000.00000000000000
+(2 rows)

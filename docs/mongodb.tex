@@ -1,0 +1,523 @@
+\chapter{Document-Oriented Databases using MongoDB}
+
+MongoDB is a popular NoSQL document-oriented database that stores data in flexible, JSON-like documents called BSON (Binary JSON). Unlike traditional relational databases that store data in rigid tables with predefined schemas, MongoDB allows for dynamic schemas where documents in the same collection can have different structures. This flexibility makes it ideal for applications with evolving data requirements and complex nested data structures.
+
+\section{Database Connection}
+The following code in `db.ts` establishes a connection to a local MongoDB instance using the official driver. This creates a reusable MongoDB client connection that can be imported across all other TypeScript files. The complete source code can be found at: \url{https://github.com/saileshbro/newsql-comparision.git/tree/main/task-1/src/db.ts}.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { MongoClient } from "mongodb";
+
+export const mongoClient = new MongoClient("mongodb://localhost:27017");
+await mongoClient.connect();
+\end{minted}
+
+This connection is imported and used across all other TypeScript files for database operations.
+
+\section{Bulk Insert of Student Data}
+The `insert.ts` file performs bulk insertion of 50 student documents from a JSON file into the MongoDB collection. This operation demonstrates how to efficiently insert multiple documents at once using the `insertMany()` method. The complete source code can be found at: \url{https://github.com/saileshbro/newsql-comparision.git/tree/main/task-1/src/insert.ts}.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db";
+import students from "./insert_students.json";
+
+const res = await mongoClient
+  .db("university")
+  .collection("students")
+  .insertMany(students);
+console.log("Inserted", res.insertedCount, "students");
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ll}
+    \textbf{Output}   & \textbf{Value} \\
+    \hline
+    Inserted students & \texttt{50}             \\
+  \end{tabular}
+  \caption{Bulk insert output. See Appendix Figure~\ref{fig:batch-upsert} for screenshot.}
+\end{table}
+
+\section{Single Insert Example}
+The `create.ts` file demonstrates inserting a single student document with a complete data structure. This operation shows how to insert a document with nested objects, arrays, and various data types including timestamps. The operation returns the acknowledgment status and the generated ObjectId for the new document. The complete source code can be found at: \url{https://github.com/saileshbro/newsql-comparision.git/tree/main/task-1/src/create.ts}.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+
+  const newStudent = {
+    student_id: 101,
+    name: { first: "Arjun", last: "Karki" },
+    program: "Information Technology",
+    year: 2,
+    address: { street: "Putalisadak", city: "Kathmandu", country: "Nepal" },
+    courses: [
+      { code: "IT100", title: "Programming Fundamentals", grade: "A" },
+      { code: "IT220", title: "Networking", grade: "A-" },
+    ],
+    contacts: [
+      { type: "mobile", value: "9801234567" },
+      { type: "email", value: "arjun.karki@example.com" },
+    ],
+    guardian: {
+      name: "Sita Karki",
+      relation: "mother",
+      contact: "9807654321",
+    },
+    scholarships: [{ name: "IT Excellence", amount: 15000, year: 2024 }],
+    attendance: [
+      { date: "2024-06-01", status: "present" },
+      { date: "2024-06-02", status: "present" },
+    ],
+    extra_curriculars: [
+      { activity: "Hackathon", level: "National", year: 2023 },
+    ],
+    profile_photo_url: "https://randomuser.me/api/portraits/men/50.jpg",
+    enrollment_status: "active",
+    notes: ["Participated in national hackathon.", "Excellent in networking."],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+
+  const { acknowledged, insertedId } = await students.insertOne(newStudent);
+  console.log("Inserted?", acknowledged, "ID:", insertedId);
+  const doc = await students.findOne({ _id: insertedId });
+  console.log(JSON.stringify(doc, null, 2));
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Output} & \textbf{Value} \\
+    \hline
+    Inserted? & \texttt{true} \\
+    ID & \texttt{665f1c2e2f8b9a1a2b3c4d5e} \\
+    \hline
+  \end{tabular}
+  \caption{Single insert output. See Appendix Figure~\ref{fig:create-operation-mongo} for screenshot.}
+\end{table}
+
+\section{Query Operations}
+
+\subsection{All Computer Science Students Who Took Algorithms (CS204)}
+This query operation finds all Computer Science students who have taken the Algorithms course (CS204). It uses a compound query with both program matching and array element matching on the courses field. The query demonstrates how to search within nested arrays of objects.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+  const result = await students
+    .find({ program: "Computer Science", "courses.code": "CS204" })
+    .toArray();
+  console.log(`Found ${result.length} students who took Algorithms (CS204)`);
+  console.table(
+    result.map((s) => ({
+      student_id: s.student_id,
+      name: s.name,
+      program: s.program,
+    })),
+  );
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{student\_id} & \textbf{name} & \textbf{program} \\
+    \hline
+    \texttt{1} & \texttt{Laxman Shrestha} & \texttt{Computer Science} \\
+    \texttt{11} & \texttt{Ram Acharya} & \texttt{Computer Science} \\
+    \texttt{15} & \texttt{Dipak Tamang} & \texttt{Computer Science} \\
+    \texttt{21} & \texttt{Narendra Joshi} & \texttt{Computer Science} \\
+    \texttt{27} & \texttt{Kiran Sapkota} & \texttt{Computer Science} \\
+    \texttt{34} & \texttt{Pooja Pathak} & \texttt{Computer Science} \\
+    \texttt{40} & \texttt{Ujjwal Panta} & \texttt{Computer Science} \\
+    \texttt{47} & \texttt{Ashish Basnyat} & \texttt{Computer Science} \\
+    \hline
+  \end{tabular}
+  \caption{CS students who took Algorithms. See Appendix Figure~\ref{fig:all-cs-algorithms-204} for screenshot.}
+\end{table}
+
+\subsection{All Electrical Engineering Students with 'A' in Circuits (EE150)}
+This query operation finds Electrical Engineering students who received an 'A' grade specifically in the Circuits course (EE150). It uses the `\$elemMatch` operator to ensure both the course code and grade conditions are met within the same array element, demonstrating precise querying of nested array elements.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+  const result = await students
+    .find({
+      program: "Electrical Engineering",
+      courses: { $elemMatch: { code: "EE150", grade: "A" } },
+    })
+    .toArray();
+  console.log(
+    `Found ${result.length} students who took Circuits (EE150) with 'A'`,
+  );
+  console.table(
+    result.map((s) => ({
+      student_id: s.student_id,
+      name: s.name,
+      program: s.program,
+    })),
+  );
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{student\_id} & \textbf{name} & \textbf{program} \\
+    \hline
+    \texttt{7} & \texttt{Ramesh Rai} & \texttt{Electrical Engineering} \\
+    \hline
+  \end{tabular}
+  \caption{EE students with 'A' in Circuits. See Appendix Figure~\ref{fig:all-ee-with-A-grade} for screenshot.}
+\end{table}
+
+\subsection{All IT Students with Any 'A' Grade}
+This query operation finds all Information Technology students who have received an 'A' grade in any course. It searches for documents where the program is "Information Technology" and any element in the courses array has a grade of "A", demonstrating how to query for any matching element within an array.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+  const result = await students
+    .find({ program: "Information Technology", "courses.grade": "A" })
+    .toArray();
+  console.log(
+    `Found ${result.length} students who took any 'A' grade course in Information Technology`,
+  );
+  console.table(
+    result.map((s) => ({
+      student_id: s.student_id,
+      name: s.name,
+      program: s.program,
+    })),
+  );
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{student\_id} & \textbf{name} & \textbf{program} \\
+    \hline
+    \texttt{8} & \texttt{Sita Luitel} & \texttt{Information Technology} \\
+    \texttt{14} & \texttt{Sunita Khadka} & \texttt{Information Technology} \\
+    \texttt{23} & \texttt{Bishal Oli} & \texttt{Information Technology} \\
+    \texttt{28} & \texttt{Sarita Baral} & \texttt{Information Technology} \\
+    \texttt{35} & \texttt{Sneha Jha} & \texttt{Information Technology} \\
+    \texttt{41} & \texttt{Aayush Rawal} & \texttt{Information Technology} \\
+    \texttt{48} & \texttt{Dilip Pariyar} & \texttt{Information Technology} \\
+    \hline
+  \end{tabular}
+  \caption{IT students with any 'A' grade. See Appendix Figure~\ref{fig:all-it-with-a-grade} for screenshot.}
+\end{table}
+
+\subsection{Students Who Took Both CS230 and CS204}
+This query operation finds students who have taken both the Databases course (CS230) and the Algorithms course (CS204). It uses the `\$all` operator to ensure that the courses array contains elements with both specified course codes, demonstrating how to query for multiple values within the same array field.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+  const result = await students
+    .find({ "courses.code": { $all: ["CS230", "CS204"] } })
+    .toArray();
+  console.log(`Found ${result.length} students who took both CS230 and CS204`);
+  console.table(
+    result.map((s) => ({
+      student_id: s.student_id,
+      name: s.name,
+      program: s.program,
+    })),
+  );
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{student\_id} & \textbf{name} & \textbf{program} \\
+    \hline
+    \texttt{15} & \texttt{Dipak Tamang} & \texttt{Computer Science} \\
+    \texttt{21} & \texttt{Narendra Joshi} & \texttt{Computer Science} \\
+    \texttt{27} & \texttt{Kiran Sapkota} & \texttt{Computer Science} \\
+    \hline
+  \end{tabular}
+  \caption{Students who took both CS230 and CS204. See Appendix Figure~\ref{fig:both-cs230-cs204} for screenshot.}
+\end{table}
+
+\section{Aggregation: Grades by Course}
+This aggregation operation analyzes the distribution of grades across different courses. It first unwinds the courses array to create separate documents for each course enrollment, then groups by course code and grade to count occurrences, and finally groups again by course code to collect all grade distributions. This demonstrates MongoDB's powerful aggregation pipeline for data analysis.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db";
+
+async function aggregateGradesByCourse() {
+  const db = mongoClient.db("university");
+  const students = db.collection("students");
+
+  const pipeline = [
+    { $unwind: "$courses" },
+    {
+      $group: {
+        _id: { code: "$courses.code", grade: "$courses.grade" },
+        count: { $sum: 1 },
+      },
+    },
+    {
+      $group: {
+        _id: "$_id.code",
+        grades: {
+          $push: { grade: "$_id.grade", count: "$count" },
+        },
+      },
+    },
+    { $sort: { _id: 1 } },
+  ];
+
+  const results = await students.aggregate(pipeline).toArray();
+  console.log(`Found ${results.length} courses`);
+  console.table(results.map((r) => ({ course: r._id, grades: r.grades })));
+}
+
+aggregateGradesByCourse()
+  .catch(console.error)
+  .finally(() => mongoClient.close());
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{course} & \textbf{grades} \\
+    \hline
+    \texttt{CS101} & \texttt{[A: 3, B: 2, A-: 1]} \\
+    \texttt{CS204} & \texttt{[A: 2, B+: 2, B: 1]} \\
+    \texttt{EE150} & \texttt{[A: 1, A-: 2, B: 1]} \\
+    \texttt{IT100} & \texttt{[A: 2, A-: 1, B: 1]} \\
+    \hline
+  \end{tabular}
+  \caption{Aggregated grades by course. See Appendix Figure~\ref{fig:aggregate-grades-course-code} for screenshot.}
+\end{table}
+
+\section{Delete Operation: First 3 Students}
+This delete operation removes the first 3 students based on their creation timestamp (ascending order). It first queries and sorts by the `created\_at` field to identify the oldest records, displays them for confirmation, then performs a bulk delete using their ObjectIds. This demonstrates both querying with sorting/limiting and safe deletion practices.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+
+  const firstThree = await students
+    .find({})
+    .sort({ created_at: 1 })
+    .limit(3)
+    .toArray();
+  if (firstThree.length === 0) {
+    console.log("No students found to delete.");
+    return;
+  }
+  console.log("Deleting the following students:");
+  console.table(
+    firstThree.map((s) => ({
+      student_id: s.student_id,
+      name: s.name,
+      created_at: s.created_at,
+    })),
+  );
+
+  const ids = firstThree.map((s) => s._id);
+  const { deletedCount } = await students.deleteMany({ _id: { $in: ids } });
+  console.log(`Deleted ${deletedCount} students.`);
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Output} & \textbf{Value} \\
+    \hline
+    Deleted students & \texttt{3} \\
+    \hline
+  \end{tabular}
+  \caption{Delete operation output. See Appendix Figure~\ref{fig:delete-first-3} for screenshot.}
+\end{table}
+
+\section{Update Operations: Adding University Field}
+This update operation demonstrates bulk updates by adding a university field to all student documents. It first counts students with the target university field, performs a mass update using `updateMany()` with an empty filter to match all documents, then counts again to verify the operation. This shows how to add new fields to existing documents and track the changes.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db.ts";
+
+async function main() {
+  const students = mongoClient.db("university").collection("students");
+
+  const initialCount = await students.countDocuments({
+    university: "Kathmandu University",
+  });
+  console.log(
+    `Initial count of students with university "Kathmandu University": ${initialCount}`,
+  );
+
+  console.log("Updating all students to add university field");
+  const updateResult = await students.updateMany(
+    {},
+    {
+      $set: {
+        university: "Kathmandu University",
+        updated_at: new Date().toISOString(),
+      },
+    },
+  );
+
+  console.log("Updated", updateResult.modifiedCount, "students");
+
+  const finalCount = await students.countDocuments({
+    university: "Kathmandu University",
+  });
+  console.log(
+    `Final count of students with university "Kathmandu University": ${finalCount}`,
+  );
+}
+
+main();
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Operation} & \textbf{Count} \\
+    \hline
+    Initial count      & \texttt{0}              \\
+    Modified documents & \texttt{50}             \\
+    Final count        & \texttt{50}             \\
+    \hline
+  \end{tabular}
+  \caption{Update operation results. See Appendix Figure~\ref{fig:update-university} for screenshot.}
+\end{table}
+
+\section{Aggregation: Students by City}
+This aggregation operation groups students by their city and counts them using MongoDB's aggregation pipeline. It uses the `\$group` stage to group by city from the nested address object, counts students per city with `\$sum`, and collects student details with `\$push`. The results are sorted by student count in descending order to show cities with the most students first.
+
+\begin{minted}[linenos,breaklines]{typescript}
+import { mongoClient } from "./db";
+
+async function aggregateStudentsByCity() {
+  const db = mongoClient.db("university");
+  const students = db.collection("students");
+
+  const pipeline = [
+    {
+      $group: {
+        _id: "$address.city",
+        student_count: { $sum: 1 },
+        students: {
+          $push: {
+            student_id: "$student_id",
+            name: { $concat: ["$name.first", " ", "$name.last"] },
+            program: "$program",
+          },
+        },
+      },
+    },
+    { $sort: { student_count: -1 } },
+  ];
+
+  const results = await students.aggregate(pipeline).toArray();
+  console.log(`Found ${results.length} cities with students`);
+
+  console.log("\n=== RAW AGGREGATION RESULTS ===");
+  console.table(
+    results.map((r) => ({
+      city: r._id,
+      student_count: r.student_count,
+    })),
+  );
+
+  console.log("\n=== STUDENTS BY CITY ===");
+  results.forEach((city) => {
+    console.log(`\n${city._id} (${city.student_count} students):`);
+    console.table(
+      city.students.map((s) => ({
+        student_id: s.student_id,
+        name: s.name,
+      })),
+    );
+  });
+}
+
+aggregateStudentsByCity()
+  .catch(console.error)
+  .finally(() => mongoClient.close());
+\end{minted}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{City} & \textbf{Student Count} \\
+    \hline
+    \texttt{Kathmandu}     & \texttt{24}                     \\
+    \texttt{Pokhara}       & \texttt{8}                      \\
+    \texttt{Bharatpur}     & \texttt{4}                      \\
+    \texttt{Lalitpur}      & \texttt{3}                      \\
+    \texttt{Other cities}  & \texttt{11}                     \\
+    \hline
+  \end{tabular}
+  \caption{Students grouped by city. See Appendix Figure~\ref{fig:aggregate-students-city} for screenshot.}
+\end{table}
+
+\section{Performance Analysis}
+
+The MongoDB implementation demonstrated several key performance characteristics:
+
+\begin{itemize}
+    \item \textbf{Bulk Operations}: The `insertMany()` operation efficiently inserted 50 student records in a single operation, demonstrating MongoDB's optimized bulk write capabilities.
+    \item \textbf{Query Performance}: Complex queries with nested array matching and compound conditions executed efficiently, with results returned in milliseconds.
+    \item \textbf{Aggregation Pipeline}: The aggregation operations for grade analysis and city grouping showed excellent performance for analytical queries.
+    \item \textbf{Schema Flexibility}: Adding new fields (university) to existing documents without migration demonstrated the performance benefits of schema evolution.
+\end{itemize}
+
+\section{Use Cases and Applications}
+
+MongoDB's document-oriented approach makes it particularly suitable for:
+
+\begin{itemize}
+    \item \textbf{Content Management Systems}: The flexible schema allows storing diverse content types with varying structures
+    \item \textbf{Real-Time Analytics}: Aggregation pipelines provide powerful analytical capabilities for live data analysis
+    \item \textbf{IoT Data Collection}: Nested document structures efficiently store complex sensor data and device information
+    \item \textbf{E-commerce Catalogs}: Product information with varying attributes can be stored without rigid schema constraints
+    \item \textbf{User Profiles}: Complex user data with optional fields and nested relationships can be stored naturally
+\end{itemize}
+
+The student management system implementation demonstrates how MongoDB excels at handling complex, evolving data structures while maintaining good query performance and providing powerful analytical capabilities through its aggregation framework.

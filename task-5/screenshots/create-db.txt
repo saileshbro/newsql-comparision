@@ -1,0 +1,15 @@
+root@localhost:26257/defaultdb> CREATE DATABASE IF NOT EXISTS bank;
+CREATE DATABASE
+
+Time: 40ms total (execution 37ms / network 3ms)
+
+root@localhost:26257/defaultdb> show databases;
+  database_name | owner | primary_region | secondary_region | regions | survival_goal
+----------------+-------+----------------+------------------+---------+----------------
+  bank          | root  | NULL           | NULL             | {}      | NULL
+  defaultdb     | root  | NULL           | NULL             | {}      | NULL
+  postgres      | root  | NULL           | NULL             | {}      | NULL
+  system        | node  | NULL           | NULL             | {}      | NULL
+(4 rows)
+
+Time: 19ms total (execution 17ms / network 1ms)

@@ -1,0 +1,9 @@
+  Account Statistics
+(1 row)
+
+Time: 7ms total (execution 7ms / network 1ms)
+
+  total_accounts | total_balance |    average_balance    | minimum_balance | maximum_balance
+-----------------+---------------+-----------------------+-----------------+------------------
+              10 |    1090000.00 | 109000.00000000000000 |        85000.00 |       160000.00
+(1 row)

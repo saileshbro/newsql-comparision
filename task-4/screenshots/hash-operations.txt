@@ -1,0 +1,49 @@
+127.0.0.1:6379> HSET student:profile:1002 name "Jane Smith" age 21 major "Information Technology" gpa 3.9
+(integer) 0
+127.0.0.1:6379> HSET student:profile:1001 name "John Doe" age 20 major "Computer Science" gpa 3.8
+(integer) 0
+127.0.0.1:6379> HSET student:profile:1003 name "Bob Johnson" age 19 major "Software Engineering" gpa 3.7
+(integer) 0
+127.0.0.1:6379> HGETALL student:profile:1001
+1) "name"
+2) "John Doe"
+3) "age"
+4) "20"
+5) "major"
+6) "Computer Science"
+7) "gpa"
+8) "3.8"
+127.0.0.1:6379> HGETALL student:profile:1002
+1) "name"
+2) "Jane Smith"
+3) "age"
+4) "21"
+5) "major"
+6) "Information Technology"
+7) "gpa"
+8) "3.9"
+127.0.0.1:6379> HGET student:profile:1001 name
+"John Doe"
+127.0.0.1:6379> HMGET student:profile:1002 name major gpa
+1) "Jane Smith"
+2) "Information Technology"
+3) "3.9"
+127.0.0.1:6379> HMSET student:profile:1004 name "Alice Brown" age 22 major "Data Science" gpa 3.95 year "Senior"
+OK
+127.0.0.1:6379> HKEYS student:profile:1001
+1) "name"
+2) "age"
+3) "major"
+4) "gpa"
+127.0.0.1:6379> HVALS student:profile:1002
+1) "Jane Smith"
+2) "21"
+3) "Information Technology"
+4) "3.9"
+127.0.0.1:6379> HEXISTS student:profile:1001 name
+(integer) 1
+127.0.0.1:6379> HEXISTS student:profile:1001 email
+(integer) 0
+127.0.0.1:6379> HINCRBY student:profile:1001 age 1
+(integer) 21
+127.0.0.1:6379> HGETALL student:profile:1001

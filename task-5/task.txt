@@ -1,0 +1,15 @@
+Task 5: Distributed SQL with CockroachDB
+Objectives:
+· Use NewSQL database with ACID transactions
+· Simulate banking operations
+Tools: CockroachDB single-node or Docker image
+Sub-Tasks:
+- Create table `accounts(id, name, balance)`
+- Perform concurrent transfers using transactions
+- Ensure transaction safety with retries
+Assessment:
+· Schema design and insertions
+· Transactional transfer logic
+Submission:
+· SQL schema
+· Python/Go code used for transaction

@@ -1,0 +1,69 @@
+# Basic Redis Operations - Simple and Hash Types
+
+# ===== SIMPLE KEY-VALUE OPERATIONS =====
+
+# Set simple string values
+SET student:1001 "John Doe"
+SET student:1002 "Jane Smith"
+SET student:1003 "Bob Johnson"
+
+# Get simple values
+GET student:1001
+GET student:1002
+GET student:1003
+
+# Set with expiration (10 seconds)
+SETEX temp:message 10 "This message will expire in 10 seconds"
+GET temp:message
+
+# Check TTL
+TTL temp:message
+
+# Set multiple keys at once
+MSET course:CS101 "Introduction to Programming" course:CS102 "Data Structures" course:CS103 "Algorithms"
+
+# Get multiple keys at once
+MGET course:CS101 course:CS102 course:CS103
+
+# ===== HASH OPERATIONS =====
+
+# Create hash for student profile
+HSET student:profile:1001 name "John Doe" age 20 major "Computer Science" gpa 3.8
+HSET student:profile:1002 name "Jane Smith" age 21 major "Information Technology" gpa 3.9
+HSET student:profile:1003 name "Bob Johnson" age 19 major "Software Engineering" gpa 3.7
+
+# Get entire hash
+HGETALL student:profile:1001
+HGETALL student:profile:1002
+
+# Get specific fields from hash
+HGET student:profile:1001 name
+HGET student:profile:1001 gpa
+HMGET student:profile:1002 name major gpa
+
+# Set multiple hash fields
+HMSET student:profile:1004 name "Alice Brown" age 22 major "Data Science" gpa 3.95 year "Senior"
+
+# Get all hash keys
+HKEYS student:profile:1001
+
+# Get all hash values
+HVALS student:profile:1002
+
+# Check if hash field exists
+HEXISTS student:profile:1001 name
+HEXISTS student:profile:1001 email
+
+# Increment numeric field in hash
+HINCRBY student:profile:1001 age 1
+HINCRBYFLOAT student:profile:1001 gpa 0.1
+
+# Get updated values
+HGETALL student:profile:1001
+
+# Delete hash field
+HDEL student:profile:1003 age
+HGETALL student:profile:1003
+
+# List all keys
+KEYS *

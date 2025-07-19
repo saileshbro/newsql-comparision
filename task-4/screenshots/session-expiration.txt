@@ -1,0 +1,8 @@
+127.0.0.1:6379> GET session:user1001
+(nil)
+127.0.0.1:6379> GET session:user1001
+(nil)
+127.0.0.1:6379> TTL session:user1001
+(integer) -2
+127.0.0.1:6379> TTL session:user1002
+(integer) -2

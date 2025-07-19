@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis-task4
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  redis-cli:
+    image: redis:7.2-alpine
+    container_name: redis-cli-task4
+    depends_on:
+      - redis
+    command: redis-cli -h redis
+    stdin_open: true
+    tty: true
+
+volumes:
+  redis_data:

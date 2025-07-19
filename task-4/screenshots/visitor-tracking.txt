@@ -1,0 +1,64 @@
+127.0.0.1:6379> SET visitors:total 0
+OK
+127.0.0.1:6379> INCR visitors:total
+(integer) 1
+127.0.0.1:6379> INCR visitors:total
+(integer) 2
+127.0.0.1:6379> INCR visitors:total
+(integer) 3
+127.0.0.1:6379> INCR visitors:total
+(integer) 4
+127.0.0.1:6379> INCR visitors:total
+(integer) 5
+127.0.0.1:6379> INCR visitors:page:home
+(integer) 1
+127.0.0.1:6379> INCR visitors:page:about
+(integer) 1
+127.0.0.1:6379> INCR visitors:page:home
+(integer) 2
+127.0.0.1:6379> INCR visitors:page:products
+(integer) 1
+127.0.0.1:6379> GET visitors:page:home
+"2"
+127.0.0.1:6379> GET visitors:page:contact
+(nil)
+127.0.0.1:6379> GET visitors:page:products
+"1"
+127.0.0.1:6379> INCR visitors:daily:2024-01-15
+(integer) 1
+127.0.0.1:6379> INCR visitors:daily:2024-01-15
+(integer) 2
+127.0.0.1:6379> INCR visitors:daily:2024-01-15
+(integer) 3
+127.0.0.1:6379> GET visitors:daily:2024-01-15
+"3"
+127.0.0.1:6379> INCR visitors:hourly:2024-01-15:10
+(integer) 1
+127.0.0.1:6379> INCR visitors:hourly:2024-01-15:10
+(integer) 2
+127.0.0.1:6379> GET visitors:hourly:2024-01-15:10
+"2"
+127.0.0.1:6379> INCR user:1001:visits
+(integer) 1
+127.0.0.1:6379> GET user:1001:visits
+"1"
+127.0.0.1:6379> INCRBY visitors:total 10
+(integer) 15
+127.0.0.1:6379> GET visitors:total
+"15"
+127.0.0.1:6379> INCR browser:chrome
+(integer) 1
+127.0.0.1:6379> GET browser:chrome
+"1"
+127.0.0.1:6379> INCR visitors:country:USA
+(integer) 1
+127.0.0.1:6379> GET visitors:country:USA
+"1"
+127.0.0.1:6379> INCR visitors:device:desktop
+(integer) 1
+127.0.0.1:6379> INCR visitors:device:desktop
+(integer) 2
+127.0.0.1:6379> INCR visitors:device:mobile
+(integer) 1
+127.0.0.1:6379> GET visitors:device:desktop
+"2"
