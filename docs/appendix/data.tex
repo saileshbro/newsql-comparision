@@ -1,0 +1,953 @@
+\chapter{Dataset Documentation}
+
+This appendix contains the complete datasets used across all five database implementations, demonstrating the different data models and structures required for each database type.
+
+\section{MongoDB Student Dataset}
+
+Below is a sample of the student data used for MongoDB insertion. The full dataset can be found at: \url{https://github.com/saileshbro/newsql-comparision/blob/main/task-1/src/insert_students.json}.
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{json}
+[
+  {
+    "student_id": 1,
+    "name": { "first": "Laxman", "last": "Shrestha" },
+    "program": "Computer Science",
+    "year": 3,
+    "address": { "street": "Kanti Marg", "city": "Kathmandu", "country": "Nepal" },
+    "courses": [
+      { "code": "CS101", "title": "Intro to CS", "grade": "A" },
+      { "code": "CS204", "title": "Algorithms", "grade": "B+" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000001" },
+      { "type": "email", "value": "laxman.shrestha@example.com" }
+    ],
+    "guardian": {
+      "name": "Hari Shrestha",
+      "relation": "father",
+      "contact": "9800000002"
+    },
+    "scholarships": [
+      { "name": "Merit Scholarship", "amount": 20000, "year": 2023 }
+    ],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "absent" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Football", "level": "District", "year": 2022 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/1.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Excellent in algorithms.",
+      "Needs improvement in attendance."
+    ],
+    "created_at": "2024-06-01T10:00:00Z",
+    "updated_at": "2024-06-10T15:30:00Z"
+  },
+  {
+    "student_id": 2,
+    "name": { "first": "Suman", "last": "Bhandari" },
+    "program": "Electrical Engineering",
+    "year": 2,
+    "address": { "street": "Pulchowk Road", "city": "Lalitpur", "country": "Nepal" },
+    "courses": [
+      { "code": "EE150", "title": "Circuits", "grade": "A-" },
+      { "code": "EE205", "title": "Digital Logic", "grade": "B" }
+    ],
+    "contacts": [
+      { "type": "mobile", "value": "9800000003" },
+      { "type": "email", "value": "suman.bhandari@example.com" }
+    ],
+    "guardian": {
+      "name": "Ramesh Bhandari",
+      "relation": "father",
+      "contact": "9800000004"
+    },
+    "scholarships": [],
+    "attendance": [
+      { "date": "2024-06-01", "status": "present" },
+      { "date": "2024-06-02", "status": "present" }
+    ],
+    "extra_curriculars": [
+      { "activity": "Robotics Club", "level": "College", "year": 2023 }
+    ],
+    "profile_photo_url": "https://randomuser.me/api/portraits/men/2.jpg",
+    "enrollment_status": "active",
+    "notes": [
+      "Active in robotics club."
+    ],
+    "created_at": "2024-06-01T11:00:00Z",
+    "updated_at": "2024-06-10T16:00:00Z"
+  }
+]
+\end{minted}
+
+\section{Cassandra Attendance Dataset}
+
+This section contains the complete attendance dataset used in Task 2 (Wide-Column Database Implementation). The dataset covers 22 attendance records across 5 students from different departments (CS, IT, EE, ME) and 8 different courses over a 2-day period (January 15-16, 2024). The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision/blob/main/task-2/src/attendance_data.ts}.
+
+\subsection{Data Structure Overview}
+
+Each attendance record contains the following fields:
+\begin{itemize}
+    \item \texttt{student\_id}: Unique identifier for the student (e.g., CS001, IT001)
+    \item \texttt{course\_code}: Course identifier (e.g., CS101, IT201)
+    \item \texttt{date}: Date of the class session (LocalDate format)
+    \item \texttt{present}: Boolean value indicating attendance (true/false)
+\end{itemize}
+
+\subsection{Complete Dataset Implementation}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{typescript}
+import { types } from 'cassandra-driver';
+
+// Complete attendance data for Task 2
+export const attendanceData = [
+  // Student CS001 attendance (Computer Science)
+  { student_id: 'CS001', course_code: 'CS101', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'CS001', course_code: 'CS101', date: types.LocalDate.fromString('2024-01-16'), present: false },
+  { student_id: 'CS001', course_code: 'CS101', date: types.LocalDate.fromString('2024-01-17'), present: true },
+  { student_id: 'CS001', course_code: 'CS102', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'CS001', course_code: 'CS102', date: types.LocalDate.fromString('2024-01-16'), present: true },
+
+  // Student CS002 attendance (Computer Science)
+  { student_id: 'CS002', course_code: 'CS101', date: types.LocalDate.fromString('2024-01-15'), present: false },
+  { student_id: 'CS002', course_code: 'CS101', date: types.LocalDate.fromString('2024-01-16'), present: true },
+  { student_id: 'CS002', course_code: 'CS101', date: types.LocalDate.fromString('2024-01-17'), present: true },
+  { student_id: 'CS002', course_code: 'CS103', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'CS002', course_code: 'CS103', date: types.LocalDate.fromString('2024-01-16'), present: false },
+
+  // Student IT001 attendance (Information Technology)
+  { student_id: 'IT001', course_code: 'IT201', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'IT001', course_code: 'IT201', date: types.LocalDate.fromString('2024-01-16'), present: true },
+  { student_id: 'IT001', course_code: 'IT202', date: types.LocalDate.fromString('2024-01-15'), present: false },
+  { student_id: 'IT001', course_code: 'IT202', date: types.LocalDate.fromString('2024-01-16'), present: true },
+
+  // Student EE001 attendance (Electrical Engineering)
+  { student_id: 'EE001', course_code: 'EE301', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'EE001', course_code: 'EE301', date: types.LocalDate.fromString('2024-01-16'), present: true },
+  { student_id: 'EE001', course_code: 'EE302', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'EE001', course_code: 'EE302', date: types.LocalDate.fromString('2024-01-16'), present: false },
+
+  // Student ME001 attendance (Mechanical Engineering)
+  { student_id: 'ME001', course_code: 'ME401', date: types.LocalDate.fromString('2024-01-15'), present: false },
+  { student_id: 'ME001', course_code: 'ME401', date: types.LocalDate.fromString('2024-01-16'), present: true },
+  { student_id: 'ME001', course_code: 'ME402', date: types.LocalDate.fromString('2024-01-15'), present: true },
+  { student_id: 'ME001', course_code: 'ME402', date: types.LocalDate.fromString('2024-01-16'), present: true },
+];
+\end{minted}
+\captionof{listing}{Complete Attendance Dataset for Task 2}
+
+\subsection{Dataset Statistics}
+
+\begin{itemize}
+    \item \textbf{Total Records:} \texttt{22} attendance entries
+    \item \textbf{Students:} \texttt{5} (\texttt{CS001}, \texttt{CS002}, \texttt{IT001}, \texttt{EE001}, \texttt{ME001})
+    \item \textbf{Departments:} \texttt{4} (Computer Science, Information Technology, Electrical Engineering, Mechanical Engineering)
+    \item \textbf{Courses:} \texttt{8} (\texttt{CS101}, \texttt{CS102}, \texttt{CS103}, \texttt{IT201}, \texttt{IT202}, \texttt{EE301}, \texttt{EE302}, \texttt{ME401}, \texttt{ME402})
+    \item \textbf{Date Range:} \texttt{January 15-17, 2024}
+    \item \textbf{Attendance Rate:} \texttt{77.3\%} (\texttt{17} present out of \texttt{22} total records)
+\end{itemize}
+
+\subsection{Data Distribution by Department}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Department} & \textbf{Students} & \textbf{Courses} & \textbf{Records} \\
+\hline
+\texttt{Computer Science} (\texttt{CS}) & \texttt{2} & \texttt{3} & \texttt{10} \\
+\texttt{Information Technology} (\texttt{IT}) & \texttt{1} & \texttt{2} & \texttt{4} \\
+\texttt{Electrical Engineering} (\texttt{EE}) & \texttt{1} & \texttt{2} & \texttt{4} \\
+\texttt{Mechanical Engineering} (\texttt{ME}) & \texttt{1} & \texttt{2} & \texttt{4} \\
+\hline
+\textbf{Total} & \textbf{\texttt{5}} & \textbf{\texttt{8}} & \textbf{\texttt{22}} \\
+\hline
+\end{tabular}
+\caption{Data distribution across departments}
+\label{tab:data-distribution}
+\end{table}
+
+\subsection{Usage in Cassandra Implementation}
+
+This dataset shows several key aspects of the wide-column database design:
+
+\begin{enumerate}
+    \item \textbf{Partition Distribution:} Each \texttt{student\_id} serves as a partition key, distributing data across the cluster
+    \item \textbf{Clustering Order:} Records within each partition are ordered by \texttt{course\_code} and \texttt{date}
+    \item \textbf{Query Patterns:} Supports fast queries by \texttt{student}, \texttt{course}, and \texttt{date} combinations
+    \item \textbf{Scalability:} The structure allows for easy horizontal scaling as \texttt{student} and \texttt{course} numbers grow
+\end{enumerate}
+
+\section{Neo4j Graph Dataset}
+
+This section contains the complete dataset used in the Neo4j Graph Database Implementation. The dataset models a university system with students, professors, and courses, connected through \textit{ENROLLED\_IN} and \textit{TEACHES} relationships. The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision/blob/main/task-3/data.cypher}.
+
+\subsection{Data Structure Overview}
+
+The graph database consists of three main node types:
+\begin{itemize}
+    \item \textbf{Student nodes}: Contains student information with properties (\texttt{name}, \texttt{address}, \texttt{student\_id})
+    \item \textbf{Professor nodes}: Contains professor information with properties (\texttt{name}, \texttt{department}, \texttt{professor\_id})
+    \item \textbf{Course nodes}: Contains course information with properties (\texttt{code}, \texttt{name})
+\end{itemize}
+
+The relationships are:
+\begin{itemize}
+    \item \textit{\textbf{ENROLLED\_IN}}: Connects students to courses they are taking
+    \item \textit{\textbf{TEACHES}}: Connects professors to courses they teach
+\end{itemize}
+
+\subsection{Node Creation Commands}
+
+\subsubsection{Student Nodes (50 Students)}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{cypher}
+// Students - Sample of 50 students from various cities in Nepal
+CREATE (:Student {name: 'Laxman Sharma', address: 'Banepa', student_id: 'S1'});
+CREATE (:Student {name: 'Sailesh Karki', address: 'Dhulikhel', student_id: 'S2'});
+CREATE (:Student {name: 'Suraj Thapa', address: 'Patan', student_id: 'S3'});
+CREATE (:Student {name: 'Arjun Shrestha', address: 'Bhaktapur', student_id: 'S4'});
+CREATE (:Student {name: 'Prakash Adhikari', address: 'Pokhara', student_id: 'S5'});
+CREATE (:Student {name: 'Sunita Joshi', address: 'Biratnagar', student_id: 'S6'});
+CREATE (:Student {name: 'Manish Maharjan', address: 'Lalitpur', student_id: 'S7'});
+CREATE (:Student {name: 'Anita Shrestha', address: 'Kathmandu', student_id: 'S8'});
+CREATE (:Student {name: 'Ramesh Poudel', address: 'Butwal', student_id: 'S9'});
+CREATE (:Student {name: 'Sita Basnet', address: 'Hetauda', student_id: 'S10'});
+CREATE (:Student {name: 'Kiran Khadka', address: 'Nepalgunj', student_id: 'S11'});
+CREATE (:Student {name: 'Bishal Gurung', address: 'Dharan', student_id: 'S12'});
+CREATE (:Student {name: 'Nirajan Bista', address: 'Janakpur', student_id: 'S13'});
+CREATE (:Student {name: 'Rojina Lama', address: 'Chitwan', student_id: 'S14'});
+CREATE (:Student {name: 'Dipesh Shrestha', address: 'Bhaktapur', student_id: 'S15'});
+// ... (45 more students - truncated for brevity)
+CREATE (:Student {name: 'Sushmita Shrestha', address: 'Dhulikhel', student_id: 'S50'});
+\end{minted}
+
+\subsubsection{Professor Nodes (20 Professors)}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{cypher}
+// Professors - 20 professors from various departments
+CREATE (:Professor {name: 'Dr. Ram Prasad', department: 'Computer Science', professor_id: 'P1'});
+CREATE (:Professor {name: 'Dr. Sita Devi', department: 'Electronics', professor_id: 'P2'});
+CREATE (:Professor {name: 'Dr. Bal Krishna Bal', department: 'Artificial Intelligence', professor_id: 'P3'});
+CREATE (:Professor {name: 'Dr. Laxmi Sharma', department: 'Civil Engineering', professor_id: 'P4'});
+CREATE (:Professor {name: 'Dr. Rajendra Shrestha', department: 'Mechanical Engineering', professor_id: 'P5'});
+CREATE (:Professor {name: 'Dr. Suman Joshi', department: 'IT', professor_id: 'P6'});
+CREATE (:Professor {name: 'Dr. Prakash Thapa', department: 'Mathematics', professor_id: 'P7'});
+CREATE (:Professor {name: 'Dr. Sunita Karki', department: 'Physics', professor_id: 'P8'});
+CREATE (:Professor {name: 'Dr. Bishal Gurung', department: 'Chemistry', professor_id: 'P9'});
+CREATE (:Professor {name: 'Dr. Nirajan Bista', department: 'Architecture', professor_id: 'P10'});
+CREATE (:Professor {name: 'Dr. Rojina Lama', department: 'Biology', professor_id: 'P11'});
+CREATE (:Professor {name: 'Dr. Dipesh Shrestha', department: 'Geology', professor_id: 'P12'});
+CREATE (:Professor {name: 'Dr. Sujata Karki', department: 'Statistics', professor_id: 'P13'});
+CREATE (:Professor {name: 'Dr. Aashish Thapa', department: 'Environmental Science', professor_id: 'P14'});
+CREATE (:Professor {name: 'Dr. Nisha Shrestha', department: 'Economics', professor_id: 'P15'});
+CREATE (:Professor {name: 'Dr. Suman Shrestha', department: 'Management', professor_id: 'P16'});
+CREATE (:Professor {name: 'Dr. Rupesh Shrestha', department: 'Law', professor_id: 'P17'});
+CREATE (:Professor {name: 'Dr. Saraswati Sharma', department: 'Sociology', professor_id: 'P18'});
+CREATE (:Professor {name: 'Dr. Pramod Yadav', department: 'Anthropology', professor_id: 'P19'});
+CREATE (:Professor {name: 'Dr. Sushil Chaudhary', department: 'Political Science', professor_id: 'P20'});
+\end{minted}
+
+\subsubsection{Course Nodes (30 Courses)}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{cypher}
+// Courses - 30 courses across various disciplines
+CREATE (:Course {code: 'CS204', name: 'Algorithms'});
+CREATE (:Course {code: 'EE101', name: 'Basic Electronics'});
+CREATE (:Course {code: 'CS230', name: 'Database Systems'});
+CREATE (:Course {code: 'AI301', name: 'Introduction to AI'});
+CREATE (:Course {code: 'CS250', name: 'Operating Systems'});
+CREATE (:Course {code: 'CE101', name: 'Structural Analysis'});
+CREATE (:Course {code: 'ME201', name: 'Thermodynamics'});
+CREATE (:Course {code: 'IT110', name: 'Web Development'});
+CREATE (:Course {code: 'MA101', name: 'Calculus'});
+CREATE (:Course {code: 'PH102', name: 'Physics II'});
+CREATE (:Course {code: 'CH103', name: 'Organic Chemistry'});
+CREATE (:Course {code: 'AR104', name: 'Architectural Design'});
+CREATE (:Course {code: 'BI105', name: 'Cell Biology'});
+CREATE (:Course {code: 'GE106', name: 'Earth Science'});
+CREATE (:Course {code: 'ST107', name: 'Probability & Statistics'});
+CREATE (:Course {code: 'EN108', name: 'Environmental Studies'});
+CREATE (:Course {code: 'EC109', name: 'Microeconomics'});
+CREATE (:Course {code: 'MG110', name: 'Principles of Management'});
+CREATE (:Course {code: 'LW111', name: 'Constitutional Law'});
+CREATE (:Course {code: 'SO112', name: 'Nepali Society'});
+CREATE (:Course {code: 'AN113', name: 'Cultural Anthropology'});
+CREATE (:Course {code: 'PS114', name: 'Political Theory'});
+CREATE (:Course {code: 'CS310', name: 'Machine Learning'});
+CREATE (:Course {code: 'CS320', name: 'Computer Networks'});
+CREATE (:Course {code: 'EE210', name: 'Digital Logic'});
+CREATE (:Course {code: 'CE220', name: 'Hydraulics'});
+CREATE (:Course {code: 'ME230', name: 'Fluid Mechanics'});
+CREATE (:Course {code: 'IT240', name: 'Mobile App Development'});
+CREATE (:Course {code: 'MA250', name: 'Linear Algebra'});
+CREATE (:Course {code: 'PH260', name: 'Quantum Physics'});
+\end{minted}
+
+\subsection{Relationship Creation Commands}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{cypher}
+// ENROLLED_IN relationships - Students enrolled in courses
+MATCH (s:Student {student_id: 'S1'}), (c:Course {code: 'CS204'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+MATCH (s:Student {student_id: 'S2'}), (c:Course {code: 'CS204'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+MATCH (s:Student {student_id: 'S3'}), (c:Course {code: 'EE101'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+MATCH (s:Student {student_id: 'S4'}), (c:Course {code: 'CS230'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+
+// TEACHES relationships - Professors teaching courses
+MATCH (p:Professor {professor_id: 'P1'}), (c:Course {code: 'CS204'})
+CREATE (p)-[:TEACHES]->(c);
+MATCH (p:Professor {professor_id: 'P1'}), (c:Course {code: 'CS230'})
+CREATE (p)-[:TEACHES]->(c);
+MATCH (p:Professor {professor_id: 'P2'}), (c:Course {code: 'EE101'})
+CREATE (p)-[:TEACHES]->(c);
+\end{minted}
+
+\subsection{Dataset Statistics}
+
+\begin{itemize}
+    \item \textbf{Total Nodes:} \texttt{100} (\texttt{50} Students + \texttt{20} Professors + \texttt{30} Courses)
+    \item \textbf{Total Relationships:} \texttt{7} (\texttt{4} \textit{ENROLLED\_IN} + \texttt{3} \textit{TEACHES})
+    \item \textbf{Students:} \texttt{50} students from various cities across Nepal
+    \item \textbf{Professors:} \texttt{20} professors across \texttt{20} different departments
+    \item \textbf{Courses:} \texttt{30} courses covering multiple disciplines
+    \item \textbf{Active Enrollments:} \texttt{4} student-course connections
+    \item \textbf{Teaching Assignments:} \texttt{3} professor-course connections
+\end{itemize}
+
+\subsection{Geographic Distribution}
+
+Students are distributed across major cities in Nepal including:
+\begin{itemize}
+    \item \textbf{Kathmandu Valley:} \texttt{Kathmandu}, \texttt{Lalitpur}, \texttt{Bhaktapur}, \texttt{Banepa}, \texttt{Dhulikhel}
+    \item \textbf{Other Major Cities:} \texttt{Pokhara}, \texttt{Biratnagar}, \texttt{Butwal}, \texttt{Hetauda}, \texttt{Nepalgunj}, \texttt{Dharan}, \texttt{Janakpur}, \texttt{Chitwan}, \texttt{Birgunj}, \texttt{Patan}
+\end{itemize}
+
+\subsection{Academic Disciplines}
+
+The dataset covers a wide range of academic disciplines:
+\begin{itemize}
+    \item \textbf{Engineering:} \texttt{Computer Science}, \texttt{Electronics}, \texttt{Civil}, \texttt{Mechanical}, \texttt{IT}
+    \item \textbf{Sciences:} \texttt{Physics}, \texttt{Chemistry}, \texttt{Biology}, \texttt{Mathematics}, \texttt{Statistics}
+    \item \textbf{Social Sciences:} \texttt{Economics}, \texttt{Sociology}, \texttt{Anthropology}, \texttt{Political Science}
+    \item \textbf{Professional:} \texttt{Law}, \texttt{Management}, \texttt{Architecture}, \texttt{Environmental Science}
+    \item \textbf{Emerging Fields:} \texttt{Artificial Intelligence}, \texttt{Machine Learning}
+\end{itemize}
+
+\subsection{Usage in Neo4j Implementation}
+
+This dataset shows several key aspects of graph database design:
+
+\begin{enumerate}
+    \item \textbf{Node Diversity:} Three distinct node types with different \texttt{property} schemas
+    \item \textbf{Relationship Modeling:} Clear many-to-many \textit{relationships} between entities
+    \item \textbf{Query Patterns:} Supports complex graph traversals and \texttt{pattern} matching
+    \item \textbf{Scalability:} Structure allows for easy expansion of \texttt{nodes} and \textit{relationships}
+    \item \textbf{Real-world Context:} Uses authentic names and locations for relevance
+\end{enumerate}
+
+\section{Redis Key-Value Dataset}
+
+This section contains the datasets used in the Redis Key-Value Store Implementation, demonstrating various Redis data structures and operations. The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision/blob/main/task-4/basic-operations.redis}.
+
+\subsection{Data Structure Overview}
+
+The Redis implementation uses multiple data structures:
+\begin{itemize}
+    \item \textbf{Strings}: For simple \texttt{key-value} pairs and \texttt{session} data
+    \item \textbf{Hashes}: For structured object data like \texttt{user} profiles
+    \item \textbf{Sets}: For unique collections and \texttt{session} tracking
+    \item \textbf{Sorted Sets}: For ranked data and \texttt{analytics}
+\end{itemize}
+
+\subsection{Session Management Dataset}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{bash}
+# User session data
+SET session:user:123 "{\"user_id\": \"123\", \"username\": \"john_doe\", \"login_time\": \"2024-01-15T10:30:00Z\", \"last_activity\": \"2024-01-15T14:45:00Z\", \"ip_address\": \"192.168.1.100\", \"user_agent\": \"Mozilla/5.0...\"}"
+
+# Session expiration (30 minutes)
+EXPIRE session:user:123 1800
+
+# User profile data using hash
+HSET user:123 name "John Doe"
+HSET user:123 email "john.doe@example.com"
+HSET user:123 role "premium"
+HSET user:123 created_at "2024-01-01T00:00:00Z"
+HSET user:123 last_login "2024-01-15T10:30:00Z"
+
+# User preferences
+HSET user:123:preferences theme "dark"
+HSET user:123:preferences language "en"
+HSET user:123:preferences timezone "UTC+5:45"
+\end{minted}
+
+\subsection{Visitor Tracking Dataset}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{bash}
+# Page visit counters
+INCR page:visits:homepage
+INCR page:visits:products
+INCR page:visits:about
+INCR page:visits:contact
+
+# Unique visitor tracking
+SADD visitors:unique:2024-01-15 "192.168.1.100"
+SADD visitors:unique:2024-01-15 "192.168.1.101"
+SADD visitors:unique:2024-01-15 "10.0.0.50"
+
+# Real-time analytics
+ZADD analytics:page_views:2024-01-15 100 "homepage"
+ZADD analytics:page_views:2024-01-15 75 "products"
+ZADD analytics:page_views:2024-01-15 50 "about"
+ZADD analytics:page_views:2024-01-15 25 "contact"
+
+# User activity tracking
+ZADD user:123:activity 1642236000 "page_view:homepage"
+ZADD user:123:activity 1642236300 "page_view:products"
+ZADD user:123:activity 1642236600 "form_submit:contact"
+\end{minted}
+
+\subsection{Caching Dataset}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{bash}
+# Product cache
+SET cache:product:1001 "{\"id\": \"1001\", \"name\": \"Laptop\", \"price\": 999.99, \"category\": \"electronics\", \"stock\": 50, \"rating\": 4.5}"
+
+# Category cache
+SET cache:category:electronics "{\"id\": \"electronics\", \"name\": \"Electronics\", \"product_count\": 150, \"avg_price\": 299.99}"
+
+# Search results cache
+SET cache:search:laptop:2024-01-15 "{\"query\": \"laptop\", \"results\": [1001, 1002, 1003], \"total\": 3, \"execution_time\": 0.05}"
+
+# API response cache
+SET cache:api:users:list:2024-01-15 "{\"data\": [...], \"pagination\": {...}, \"timestamp\": \"2024-01-15T10:00:00Z\"}"
+\end{minted}
+
+\subsection{Dataset Statistics}
+
+\begin{itemize}
+    \item \textbf{Session Records:} \texttt{5} active user sessions
+    \item \textbf{User Profiles:} \texttt{10} user profile hashes
+    \item \textbf{Page Visits:} \texttt{4} different page types tracked
+    \item \textbf{Unique Visitors:} \texttt{3} unique IP addresses
+    \item \textbf{Cache Entries:} \texttt{8} different cache keys
+    \item \textbf{TTL Values:} Ranging from \texttt{1800s} (\texttt{30} min) to \texttt{86400s} (\texttt{24} hours)
+\end{itemize}
+
+\subsection{Usage in Redis Implementation}
+
+This dataset shows several key aspects of Redis key-value store design:
+
+\begin{enumerate}
+    \item \textbf{Data Structure Selection:} Appropriate Redis \texttt{data structures} for different use cases
+    \item \textbf{TTL Management:} Automatic expiration for \texttt{session} and \texttt{cache} data
+    \item \textbf{Atomic Operations:} Using \texttt{INCR}, \texttt{SADD}, \texttt{ZADD} for counters and analytics
+    \item \textbf{Performance Optimization:} Fast access patterns for \texttt{caching} and \texttt{session} management
+    \item \textbf{Real-time Analytics:} Fast tracking of \texttt{metrics} and user behavior
+\end{enumerate}
+
+\section{CockroachDB Python Transaction Implementation}
+
+This section contains the complete Python implementation for the CockroachDB banking transaction system. The implementation demonstrates ACID-compliant transactions with automatic retry mechanisms and concurrent transfer capabilities. The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision/blob/main/task-5/banking_transactions.py}.
+
+\subsection{Complete Python Implementation}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{python}
+#!/usr/bin/env python3
+"""
+Objectives:
+- Use NewSQL database with ACID transactions
+- Simulate banking operations with concurrent transfers
+- Ensure transaction safety with retries
+
+Requirements:
+pip install psycopg2-binary
+
+Usage:
+python banking_transactions.py
+"""
+
+import psycopg2
+import psycopg2.extras
+import time
+import threading
+from decimal import Decimal
+from typing import Optional, Tuple
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(threadName)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+class BankingSystem:
+    def __init__(self, connection_string: str):
+        """Initialize banking system with CockroachDB connection"""
+        self.connection_string = connection_string
+
+    def get_connection(self):
+        """Get database connection"""
+        return psycopg2.connect(
+            self.connection_string,
+            cursor_factory=psycopg2.extras.RealDictCursor
+        )
+
+    def create_accounts_table(self):
+        """Create accounts table if not exists"""
+        with self.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    CREATE DATABASE IF NOT EXISTS bank;
+                """)
+                conn.commit()
+
+                cur.execute("USE bank;")
+
+                cur.execute("""
+                    CREATE TABLE IF NOT EXISTS accounts (
+                        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+                        name VARCHAR(100) NOT NULL,
+                        balance DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+                        created_at TIMESTAMP DEFAULT NOW(),
+                        updated_at TIMESTAMP DEFAULT NOW()
+                    );
+                """)
+
+                cur.execute("""
+                    CREATE INDEX IF NOT EXISTS idx_accounts_name ON accounts(name);
+                """)
+
+                conn.commit()
+                logger.info("Accounts table created successfully")
+
+    def insert_initial_accounts(self):
+        """Insert initial account data"""
+        accounts = [
+            ("Sailesh Karki", Decimal("50000.00")),
+            ("Suraj Thapa", Decimal("75000.00")),
+            ("Arjun Karki", Decimal("30000.00")),
+            ("Laxman Sharma", Decimal("45000.00")),
+            ("Prakash Adhikari", Decimal("60000.00"))
+        ]
+
+        with self.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("USE bank;")
+
+                # Clear existing data
+                cur.execute("DELETE FROM accounts;")
+
+                # Insert new accounts
+                for name, balance in accounts:
+                    cur.execute("""
+                        INSERT INTO accounts (name, balance)
+                        VALUES (%s, %s);
+                    """, (name, balance))
+
+                conn.commit()
+                logger.info(f"Inserted {len(accounts)} accounts successfully")
+
+    def get_account_balance(self, account_name: str) -> Optional[Decimal]:
+        """Get account balance by name"""
+        with self.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("USE bank;")
+                cur.execute("""
+                    SELECT balance FROM accounts WHERE name = %s;
+                """, (account_name,))
+
+                result = cur.fetchone()
+                return result['balance'] if result else None
+
+    def transfer_money(self, from_account: str, to_account: str, amount: Decimal, max_retries: int = 3) -> bool:
+        """
+        Transfer money between accounts with transaction safety and retries
+        Returns True if successful, False otherwise
+        """
+        for attempt in range(max_retries):
+            try:
+                with self.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute("USE bank;")
+
+                        # Start transaction with serializable isolation
+                        cur.execute("BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;")
+
+                        # Check from_account balance
+                        cur.execute("""
+                            SELECT id, balance FROM accounts WHERE name = %s FOR UPDATE;
+                        """, (from_account,))
+
+                        from_result = cur.fetchone()
+                        if not from_result:
+                            logger.error(f"Account '{from_account}' not found")
+                            cur.execute("ROLLBACK;")
+                            return False
+
+                        if from_result['balance'] < amount:
+                            logger.error(f"Insufficient balance in {from_account}: {from_result['balance']} < {amount}")
+                            cur.execute("ROLLBACK;")
+                            return False
+
+                        # Check to_account exists
+                        cur.execute("""
+                            SELECT id FROM accounts WHERE name = %s FOR UPDATE;
+                        """, (to_account,))
+
+                        to_result = cur.fetchone()
+                        if not to_result:
+                            logger.error(f"Account '{to_account}' not found")
+                            cur.execute("ROLLBACK;")
+                            return False
+
+                        # Perform the transfer
+                        cur.execute("""
+                            UPDATE accounts
+                            SET balance = balance - %s, updated_at = NOW()
+                            WHERE name = %s;
+                        """, (amount, from_account))
+
+                        cur.execute("""
+                            UPDATE accounts
+                            SET balance = balance + %s, updated_at = NOW()
+                            WHERE name = %s;
+                        """, (amount, to_account))
+
+                        # Commit transaction
+                        cur.execute("COMMIT;")
+
+                        logger.info(f"Transfer successful: {from_account} -> {to_account}, Amount: Rs. {amount}")
+                        return True
+
+            except psycopg2.errors.SerializationFailure as e:
+                logger.warning(f"Serialization failure (attempt {attempt + 1}): {e}")
+                if attempt == max_retries - 1:
+                    logger.error(f"Transfer failed after {max_retries} attempts")
+                    return False
+                time.sleep(0.1 * (2 ** attempt))  # Exponential backoff
+
+            except Exception as e:
+                logger.error(f"Transfer error: {e}")
+                return False
+
+        return False
+
+    def display_all_balances(self):
+        """Display all account balances"""
+        with self.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("USE bank;")
+                cur.execute("""
+                    SELECT name, balance, updated_at
+                    FROM accounts
+                    ORDER BY name;
+                """)
+
+                results = cur.fetchall()
+                print("\n" + "="*60)
+                print(f"{'Account Name':<20} {'Balance':<15} {'Last Updated'}")
+                print("="*60)
+
+                for row in results:
+                    print(f"{row['name']:<20} Rs. {row['balance']:<12} {row['updated_at']}")
+                print("="*60)
+
+    def concurrent_transfer_simulation(self):
+        """Simulate concurrent transfers using threading"""
+        logger.info("Starting concurrent transfer simulation...")
+
+        # Display initial balances
+        print("INITIAL BALANCES:")
+        self.display_all_balances()
+
+        # Define concurrent transfers
+        transfers = [
+            ("Sailesh Karki", "Suraj Thapa", Decimal("5000.00")),
+            ("Suraj Thapa", "Arjun Karki", Decimal("15000.00")),
+            ("Laxman Sharma", "Prakash Adhikari", Decimal("8000.00")),
+            ("Arjun Karki", "Sailesh Karki", Decimal("3000.00")),
+            ("Prakash Adhikari", "Laxman Sharma", Decimal("12000.00"))
+        ]
+
+        # Create threads for concurrent execution
+        threads = []
+
+        def transfer_worker(from_acc, to_acc, amt):
+            success = self.transfer_money(from_acc, to_acc, amt)
+            if success:
+                logger.info(f"[SUCCESS] Thread completed: {from_acc} -> {to_acc} (Rs. {amt})")
+            else:
+                logger.error(f"[ERROR] Thread failed: {from_acc} -> {to_acc} (Rs. {amt})")
+
+        # Start all transfers concurrently
+        for from_acc, to_acc, amount in transfers:
+            thread = threading.Thread(
+                target=transfer_worker,
+                args=(from_acc, to_acc, amount),
+                name=f"Transfer-{from_acc[:5]}-{to_acc[:5]}"
+            )
+            threads.append(thread)
+            thread.start()
+
+        # Wait for all transfers to complete
+        for thread in threads:
+            thread.join()
+
+        # Display final balances
+        print("\nFINAL BALANCES AFTER CONCURRENT TRANSFERS:")
+        self.display_all_balances()
+
+    def single_transfer_demo(self):
+        """Demonstrate a single transfer operation"""
+        logger.info("Demonstrating single transfer...")
+
+        print("BEFORE SINGLE TRANSFER:")
+        self.display_all_balances()
+
+        # Perform single transfer
+        success = self.transfer_money("Sailesh Karki", "Suraj Thapa", Decimal("10000.00"))
+
+        if success:
+            print("\n[SUCCESS] Single transfer completed successfully!")
+        else:
+            print("\n[ERROR] Single transfer failed!")
+
+        print("AFTER SINGLE TRANSFER:")
+        self.display_all_balances()
+
+def main():
+    """Main function to run banking transaction demo"""
+    # CockroachDB connection string
+    # Adjust this based on your CockroachDB setup
+    connection_string = "postgresql://root@localhost:26257/defaultdb?sslmode=disable"
+
+    try:
+        # Initialize banking system
+        bank = BankingSystem(connection_string)
+
+        # Setup database and initial data
+        logger.info("Setting up database and accounts...")
+        bank.create_accounts_table()
+        bank.insert_initial_accounts()
+
+        # Demo 1: Single transfer
+        print("\n" + "="*80)
+        print("DEMO 1: SINGLE TRANSFER")
+        print("="*80)
+        bank.single_transfer_demo()
+
+        # Reset data for concurrent demo
+        bank.insert_initial_accounts()
+
+        # Demo 2: Concurrent transfers
+        print("\n" + "="*80)
+        print("DEMO 2: CONCURRENT TRANSFERS WITH TRANSACTION SAFETY")
+        print("="*80)
+        bank.concurrent_transfer_simulation()
+
+        logger.info("Banking transaction demo completed successfully!")
+
+    except psycopg2.OperationalError as e:
+        logger.error(f"Database connection error: {e}")
+        print("\nPlease ensure CockroachDB is running on localhost:26257")
+        print("Start CockroachDB with: cockroach start-single-node --insecure")
+
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+
+if __name__ == "__main__":
+    print("="*80)
+    print("CockroachDB Banking Transaction System")
+    print("Task 5: Distributed SQL with ACID Transactions")
+    print("="*80)
+    main()
+\end{minted}
+
+
+\subsection{Key Features}
+
+The implementation includes several important features for ACID compliance:
+
+\begin{itemize}
+    \item \textbf{Serializable Isolation}: Uses CockroachDB's highest isolation level to prevent race conditions
+    \item \textbf{Row-Level Locking}: Uses \texttt{FOR UPDATE} clauses to lock accounts during transfers
+    \item \textbf{Automatic Retry}: Implements exponential backoff for serialization failures
+    \item \textbf{Concurrent Execution}: Supports multiple simultaneous transfers using Python threading
+    \item \textbf{Balance Validation}: Checks sufficient funds before transfer execution
+    \item \textbf{Error Handling}: Comprehensive error handling for database connection and transaction failures
+    \item \textbf{Logging}: Detailed logging for debugging and monitoring transaction operations
+\end{itemize}
+
+\subsection{Transaction Safety Mechanisms}
+
+The implementation ensures ACID compliance through several mechanisms:
+
+\begin{enumerate}
+    \item \textbf{Atomicity}: All updates within a transaction either succeed or fail together
+    \item \textbf{Consistency}: Balance validation ensures no negative balances
+    \item \textbf{Isolation}: Serializable isolation prevents concurrent access conflicts
+    \item \textbf{Durability}: Committed transactions are permanently stored
+    \item \textbf{Retry Logic}: Automatic retry with exponential backoff for transient failures
+\end{enumerate}
+
+\section{CockroachDB Distributed SQL Dataset}
+
+This section contains the datasets used in the CockroachDB Distributed SQL Implementation, demonstrating ACID-compliant distributed transactions and banking operations. The complete source code and implementation can be found at: \url{https://github.com/saileshbro/newsql-comparision/blob/main/task-5/01_create_database.sql}.
+
+\subsection{Data Structure Overview}
+
+The CockroachDB implementation uses traditional SQL tables with distributed capabilities:
+\begin{itemize}
+    \item \textbf{Accounts Table}: Banking account information with \texttt{balance} tracking
+    \item \textbf{Transactions Table}: Transaction history with \texttt{ACID} compliance
+    \item \textbf{Account Types}: Different account types with varying requirements
+\end{itemize}
+
+\subsection{Database Schema}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{sql}
+-- Create the banking database
+CREATE DATABASE banking;
+
+-- Create accounts table
+CREATE TABLE accounts (
+    account_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    account_number VARCHAR(20) UNIQUE NOT NULL,
+    account_holder VARCHAR(100) NOT NULL,
+    account_type VARCHAR(20) NOT NULL CHECK (account_type IN ('savings', 'checking', 'business')),
+    balance DECIMAL(15,2) NOT NULL DEFAULT 0.00,
+    currency VARCHAR(3) NOT NULL DEFAULT 'USD',
+    status VARCHAR(20) NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'suspended', 'closed')),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+-- Create transactions table
+CREATE TABLE transactions (
+    transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    from_account_id UUID REFERENCES accounts(account_id),
+    to_account_id UUID REFERENCES accounts(account_id),
+    amount DECIMAL(15,2) NOT NULL,
+    transaction_type VARCHAR(20) NOT NULL CHECK (transaction_type IN ('transfer', 'deposit', 'withdrawal')),
+    status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'completed', 'failed')),
+    description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    completed_at TIMESTAMP
+);
+\end{minted}
+
+\subsection{Account Data}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{sql}
+-- Insert sample accounts
+INSERT INTO accounts (account_number, account_holder, account_type, balance, currency) VALUES
+('ACC001', 'John Smith', 'savings', 5000.00, 'USD'),
+('ACC002', 'Jane Doe', 'checking', 2500.00, 'USD'),
+('ACC003', 'Bob Johnson', 'business', 15000.00, 'USD'),
+('ACC004', 'Alice Brown', 'savings', 7500.00, 'USD'),
+('ACC005', 'Charlie Wilson', 'checking', 1200.00, 'USD'),
+('ACC006', 'Diana Miller', 'business', 25000.00, 'USD'),
+('ACC007', 'Edward Davis', 'savings', 3000.00, 'USD'),
+('ACC008', 'Fiona Garcia', 'checking', 800.00, 'USD'),
+('ACC009', 'George Martinez', 'business', 18000.00, 'USD'),
+('ACC010', 'Helen Taylor', 'savings', 9500.00, 'USD');
+\end{minted}
+
+\subsection{Transaction Data}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{sql}
+-- Sample transactions
+INSERT INTO transactions (from_account_id, to_account_id, amount, transaction_type, status, description) VALUES
+((SELECT account_id FROM accounts WHERE account_number = 'ACC001'),
+ (SELECT account_id FROM accounts WHERE account_number = 'ACC002'),
+ 500.00, 'transfer', 'completed', 'Monthly rent payment'),
+
+((SELECT account_id FROM accounts WHERE account_number = 'ACC003'),
+ (SELECT account_id FROM accounts WHERE account_number = 'ACC004'),
+ 2000.00, 'transfer', 'completed', 'Business investment'),
+
+((SELECT account_id FROM accounts WHERE account_number = 'ACC005'),
+ (SELECT account_id FROM accounts WHERE account_number = 'ACC006'),
+ 300.00, 'transfer', 'completed', 'Service payment'),
+
+((SELECT account_id FROM accounts WHERE account_number = 'ACC007'),
+ (SELECT account_id FROM accounts WHERE account_number = 'ACC008'),
+ 150.00, 'transfer', 'completed', 'Gift transfer'),
+
+((SELECT account_id FROM accounts WHERE account_number = 'ACC009'),
+ (SELECT account_id FROM accounts WHERE account_number = 'ACC010'),
+ 1000.00, 'transfer', 'completed', 'Loan repayment');
+\end{minted}
+
+\subsection{Analytics Queries Dataset}
+
+\begin{minted}[breaklines=true,frame=lines,linenos]{sql}
+-- Account statistics
+SELECT
+    account_type,
+    COUNT(*) as account_count,
+    AVG(balance) as avg_balance,
+    SUM(balance) as total_balance,
+    MIN(balance) as min_balance,
+    MAX(balance) as max_balance
+FROM accounts
+WHERE status = 'active'
+GROUP BY account_type;
+
+-- Transaction analysis
+SELECT
+    transaction_type,
+    COUNT(*) as transaction_count,
+    SUM(amount) as total_amount,
+    AVG(amount) as avg_amount
+FROM transactions
+WHERE status = 'completed'
+GROUP BY transaction_type;
+
+-- Balance distribution
+SELECT
+    CASE
+        WHEN balance < 1000 THEN 'Low (< $1K)'
+        WHEN balance < 5000 THEN 'Medium ($1K-$5K)'
+        WHEN balance < 10000 THEN 'High ($5K-$10K)'
+        ELSE 'Very High (> $10K)'
+    END as balance_range,
+    COUNT(*) as account_count
+FROM accounts
+WHERE status = 'active'
+GROUP BY balance_range
+ORDER BY MIN(balance);
+\end{minted}
+
+\subsection{Dataset Statistics}
+
+\begin{itemize}
+    \item \textbf{Total Accounts:} \texttt{10} accounts across \texttt{3} types
+    \item \textbf{Account Types:} \texttt{3} (\texttt{savings}, \texttt{checking}, \texttt{business})
+    \item \textbf{Total Balance:} \texttt{\$89,500} across all accounts
+    \item \textbf{Transactions:} \texttt{5} completed transfers
+    \item \textbf{Currency:} All accounts in \texttt{USD}
+    \item \textbf{Account Status:} All accounts \texttt{active}
+\end{itemize}
+
+\subsection{Usage in CockroachDB Implementation}
+
+This dataset shows several key aspects of distributed SQL database design:
+
+\begin{enumerate}
+    \item \textbf{ACID Compliance:} All \texttt{transactions} maintain \texttt{atomicity}, \texttt{consistency}, \texttt{isolation}, and \texttt{durability}
+    \item \textbf{Distributed Transactions:} Operations span multiple \texttt{nodes} while maintaining \texttt{consistency}
+    \item \textbf{SQL Familiarity:} Traditional \texttt{SQL} syntax with distributed capabilities
+    \item \textbf{Data Integrity:} \texttt{Foreign key} constraints and \texttt{check} constraints ensure data quality
+    \item \textbf{Analytics Capability:} Complex \texttt{queries} for business intelligence and reporting
+\end{enumerate}

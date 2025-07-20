@@ -1,0 +1,41 @@
+BEGIN
+
+Time: 1ms total (execution 5ms / network 1ms)
+
+      status
+-------------------
+  Before Transfer
+(1 row)
+
+Time: 2ms total (execution 1ms / network 1ms)
+
+                   id                  |       name       |  balance
+---------------------------------------+------------------+------------
+  d63ba0b8-89e2-4c30-9cf4-9c4f43c62c7d | Laxman Shrestha  | 150000.00
+  93d92279-5416-4ebf-b207-88ed3d55f9df | Sailesh Bhandari |  75000.00
+(2 rows)
+
+Time: 7ms total (execution 7ms / network 0ms)
+
+UPDATE 2
+
+Time: 14ms total (execution 14ms / network 0ms)
+
+      status
+------------------
+  After Transfer
+(1 row)
+
+Time: 0ms total (execution 0ms / network 0ms)
+
+                   id                  |       name       |  balance
+---------------------------------------+------------------+------------
+  d63ba0b8-89e2-4c30-9cf4-9c4f43c62c7d | Laxman Shrestha  | 125000.00
+  93d92279-5416-4ebf-b207-88ed3d55f9df | Sailesh Bhandari | 100000.00
+(2 rows)
+
+Time: 8ms total (execution 8ms / network 0ms)
+
+COMMIT
+
+Time: 4ms total (execution 3ms / network 0ms)

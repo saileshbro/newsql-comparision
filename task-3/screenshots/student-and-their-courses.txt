@@ -1,0 +1,5 @@
+Student	Course
+"Arjun Shrestha"	"Database Systems"
+"Laxman Sharma"	"Algorithms"
+"Sailesh Karki"	"Algorithms"
+"Suraj Thapa"	"Basic Electronics"

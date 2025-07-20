@@ -1,0 +1,1 @@
+SELECT * FROM attendance WHERE student_id = 'CS001';

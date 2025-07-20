@@ -1,0 +1,13 @@
+root@localhost:26257/bank> SELECT
+                        ->     COUNT(*) as total_accounts,
+                        ->     SUM(balance) as total_balance,
+                        ->     AVG(balance) as average_balance,
+                        ->     MIN(balance) as minimum_balance,
+                        ->     MAX(balance) as maximum_balance
+                        -> FROM accounts;
+  total_accounts | total_balance |    average_balance    | minimum_balance | maximum_balance
+-----------------+---------------+-----------------------+-----------------+------------------
+              10 |    1090000.00 | 109000.00000000000000 |        65000.00 |       180000.00
+(1 row)
+
+Time: 29ms total (execution 28ms / network 1ms)

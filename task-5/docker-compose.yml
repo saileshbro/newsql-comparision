@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  cockroachdb:
+    image: cockroachdb/cockroach:v23.1.13
+    container_name: task5-cockroachdb
+    restart: unless-stopped
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    volumes:
+      - cockroach_task5_data:/cockroach/cockroach-data
+    command: start-single-node --insecure --http-addr=:8080
+    environment:
+      - COCKROACH_DB=bank
+volumes:
+  cockroach_task5_data:

@@ -1,0 +1,22 @@
+\chapter{Conclusion and Key Insights}
+
+Testing these five database implementations revealed distinct operational characteristics for different workloads \parencite{nosql_survey}. MongoDB successfully processed complex aggregations across 50 student documents, showing the document-oriented model's capabilities for nested data analysis \parencite{mongodb_architecture}. Cassandra's partition strategy effectively handled 22 attendance records, illustrating the column-family model's approach to time-series data management \parencite{cassandra_architecture}. Neo4j enabled intuitive relationship queries between 13 nodes and 12 connections, showcasing graph database advantages for pattern matching operations \parencite{neo4j_survey}. Redis successfully executed atomic operations across a substantial dataset, showing key-value store efficiency for session management and caching scenarios \parencite{redis_paper}. CockroachDB maintained ACID guarantees during concurrent banking transactions, providing the consistency requirements that distributed SQL applications demand \parencite{cockroachdb_paper}.
+
+Each database type shows particular strengths aligned with specific application requirements \parencite{nosql_performance}. MongoDB's aggregation pipeline supports complex analytical operations on document collections \parencite{mongodb_architecture}, while Cassandra's partitioning model accommodates distributed time-series data management \parencite{cassandra_architecture}. Neo4j facilitates intuitive relationship-based querying \parencite{neo4j_manual}, Redis provides efficient key-value operations for real-time applications \parencite{redis_documentation}, and CockroachDB combines familiar SQL interfaces with distributed ACID consistency \parencite{cockroachdb_paper}. Effective database architecture requires understanding these functional trade-offs and often involves leveraging multiple database types for different application components \parencite{database_systems}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Database} & \textbf{Query Type} & \textbf{Data Volume} & \textbf{Operational Result} \\
+\hline
+\texttt{MongoDB} & \texttt{Complex aggregation} & \texttt{50} documents & \texttt{Successful} \\
+\texttt{Cassandra} & \texttt{Time-series query} & \texttt{22} records & \texttt{Successful} \\
+\texttt{Neo4j} & \texttt{Graph traversal} & \texttt{13} nodes & \texttt{Successful} \\
+\texttt{Redis} & \texttt{Atomic operations} & \texttt{1000+} ops & \texttt{Successful} \\
+\texttt{CockroachDB} & \texttt{ACID transactions} & \texttt{10} concurrent & \texttt{Consistent} \\
+\hline
+\end{tabular}
+\caption{Operational Implementation Summary}
+\label{tab:implementation-summary}
+\end{table}

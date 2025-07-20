@@ -1,0 +1,15 @@
+Task 2: Wide-Column Databases using Apache Cassandra
+Objectives:
+· Model wide-column family data
+· Perform partition-aware queries
+Tools: Cassandra CLI or DataStax Studio
+Sub-Tasks:
+- Set up Cassandra and keyspace `university`
+- Create table `attendance(student_id, course_code, date, present)`
+- Insert attendance data
+- Query attendance by student and course
+Assessment:
+· Table creation & data insertion
+· Query correctness & indexing Submission:
+· .cql file of schema
+· Screenshot of sample queries and outputs

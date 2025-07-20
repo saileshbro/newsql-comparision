@@ -1,0 +1,13 @@
+Task 3: Graph Databases using Neo4jObjectives:
+· Understand graph data modeling
+· Use Cypher to query nodes and relationships
+Tools: Neo4j Desktop or BrowserSub-Tasks:
+- Create nodes: Students, Professors, Courses
+- Create relationships: `ENROLLED_IN`, `TEACHES`
+- Query for indirect relationships (e.g., professors and their students)
+Assessment:
+· Graph creation
+· Cypher query accuracy
+Submission:
+· Screenshot of graph visualization
+· Cypher queries in a `.txt` file

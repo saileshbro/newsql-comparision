@@ -1,0 +1,52 @@
+127.0.0.1:6379> SET session:user1001 "John Doe logged in" EX 30
+OK
+127.0.0.1:6379> SET session:user1002 "Jane Smith logged in" EX 30
+OK
+127.0.0.1:6379> SET session:user1003 "Bob Johnson logged in" EX 30
+OK
+127.0.0.1:6379> GET session:user1001
+"John Doe logged in"
+127.0.0.1:6379> GET session:user1002
+"Jane Smith logged in"
+127.0.0.1:6379> TTL session:user1001
+(integer) 11
+127.0.0.1:6379> TTL session:user1002
+(integer) 11
+127.0.0.1:6379> HSET session:detailed:user1001 user_id 1001 username "john_doe" login_time "2024-01-15 10:30:00" ip_address "192.168.1.100"
+(integer) 4
+127.0.0.1:6379> EXPIRE session:detailed:user1001 45
+(integer) 1
+127.0.0.1:6379> HSET session:detailed:user1002 user_id 1002 username "jane_smith" login_time "2024-01-15 10:35:00" ip_address "192.168.1.101"
+(integer) 4
+127.0.0.1:6379> EXPIRE session:detailed:user1002 45
+(integer) 1
+127.0.0.1:6379> HGETALL session:detailed:user1001
+1) "user_id"
+2) "1001"
+3) "username"
+4) "john_doe"
+5) "login_time"
+6) "2024-01-15 10:30:00"
+7) "ip_address"
+8) "192.168.1.100"
+127.0.0.1:6379> TTL session:detailed:user1001
+(integer) 32
+127.0.0.1:6379> EXPIRE session:user1001 60
+(integer) 0
+127.0.0.1:6379> TTL session:user1001
+(integer) -2
+127.0.0.1:6379> HSET cart:session:user1001 item1 "Laptop" item2 "Mouse" item3 "Keyboard" total 1500
+(integer) 4
+127.0.0.1:6379> EXPIRE cart:session:user1001 300
+(integer) 1
+127.0.0.1:6379> HGETALL cart:session:user1001
+1) "item1"
+2) "Laptop"
+3) "item2"
+4) "Mouse"
+5) "item3"
+6) "Keyboard"
+7) "total"
+8) "1500"
+127.0.0.1:6379> TTL cart:session:user1001
+(integer) 293

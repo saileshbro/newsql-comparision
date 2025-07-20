@@ -1,0 +1,15 @@
+root@localhost:26257/bank> INSERT INTO accounts (name, balance) VALUES
+                        ->     ('Laxman Shrestha', 150000.00),
+                        ->     ('Sailesh Bhandari', 75000.00),
+                        ->     ('Suraj Thapa', 120000.00),
+                        ->     ('Arjun Karki', 95000.00),
+                        ->     ('Pooja Pathak', 180000.00),
+                        ->     ('Narendra Joshi', 65000.00),
+                        ->     ('Kiran Sapkota', 110000.00),
+                        ->     ('Ujjwal Panta', 85000.00),
+                        ->     ('Ashish Basnyat', 140000.00),
+                        ->     ('Dipesh Tamang', 70000.00)
+                        -> ON CONFLICT DO NOTHING;
+INSERT 0 10
+
+Time: 34ms total (execution 33ms / network 1ms)

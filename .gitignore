@@ -1,1 +1,14 @@
 node_modules/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_*
+*.fls
+*.out
+*.run*
+*.sync*
+*.toc
+*.xdv
+*.log
+_minted/

@@ -1,0 +1,15 @@
+Task 4: Key-Value Stores using Redis
+Objectives:
+· Perform basic Redis operations
+· Simulate caching and session management
+Tools: Redis CLI or RedisInsight
+Sub-Tasks:
+- Set and get keys (simple and hash types)
+- Simulate login sessions using keys with TTL
+- Use INCR for visitor tracking
+Assessment:
+· Key-value manipulation
+· Session simulation and TTL use
+Submission:
+· Redis command logs
+· Screenshot of session expiration

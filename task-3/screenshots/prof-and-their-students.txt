@@ -1,0 +1,5 @@
+Professor	Course	Student
+"Dr. Ram Prasad"	"Algorithms"	"Laxman Sharma"
+"Dr. Ram Prasad"	"Algorithms"	"Sailesh Karki"
+"Dr. Ram Prasad"	"Database Systems"	"Arjun Shrestha"
+"Dr. Sita Devi"	"Basic Electronics"	"Suraj Thapa"

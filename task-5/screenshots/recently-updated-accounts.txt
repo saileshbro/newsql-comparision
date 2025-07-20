@@ -1,0 +1,15 @@
+  Recently Updated Accounts
+(1 row)
+
+Time: 1ms total (execution 1ms / network 1ms)
+
+        name       |  balance  |         updated_at
+-------------------+-----------+-----------------------------
+  Laxman Shrestha  | 115000.00 | 2025-07-19 13:30:58.098249
+  Sailesh Bhandari | 110000.00 | 2025-07-19 13:30:58.098249
+  Dipesh Tamang    |  88000.00 | 2025-07-19 13:30:58.085706
+  Ashish Basnyat   | 122000.00 | 2025-07-19 13:30:58.085706
+  Ujjwal Panta     |  97000.00 | 2025-07-19 13:30:58.072423
+(5 rows)
+
+Time: 5ms total (execution 4ms / network 0ms)

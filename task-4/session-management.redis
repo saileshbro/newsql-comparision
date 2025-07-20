@@ -1,0 +1,76 @@
+# Session Management with TTL
+
+# ===== LOGIN SESSION SIMULATION =====
+
+# Create login sessions with 30 second TTL
+SET session:user1001 "John Doe logged in" EX 30
+SET session:user1002 "Jane Smith logged in" EX 30
+SET session:user1003 "Bob Johnson logged in" EX 30
+
+# Check current sessions
+GET session:user1001
+GET session:user1002
+GET session:user1003
+
+# Check TTL for sessions
+TTL session:user1001
+TTL session:user1002
+TTL session:user1003
+
+# Create detailed session data using hashes with TTL
+HSET session:detailed:user1001 user_id 1001 username "john_doe" login_time "2024-01-15 10:30:00" ip_address "192.168.1.100"
+EXPIRE session:detailed:user1001 45
+
+HSET session:detailed:user1002 user_id 1002 username "jane_smith" login_time "2024-01-15 10:35:00" ip_address "192.168.1.101"
+EXPIRE session:detailed:user1002 45
+
+# Check detailed session data
+HGETALL session:detailed:user1001
+HGETALL session:detailed:user1002
+
+# Check TTL for detailed sessions
+TTL session:detailed:user1001
+TTL session:detailed:user1002
+
+# Simulate session activity (extend session)
+EXPIRE session:user1001 60
+TTL session:user1001
+
+# Create shopping cart session with TTL
+HSET cart:session:user1001 item1 "Laptop" item2 "Mouse" item3 "Keyboard" total 1500
+EXPIRE cart:session:user1001 300
+
+# Check cart session
+HGETALL cart:session:user1001
+TTL cart:session:user1001
+
+# Simulate logout (delete session)
+DEL session:user1003
+GET session:user1003
+
+# Check remaining sessions
+KEYS session:*
+
+# Wait and check session expiration (run these after waiting)
+# After 30+ seconds:
+GET session:user1001
+GET session:user1002
+TTL session:user1001
+TTL session:user1002
+
+# Check if detailed sessions still exist
+HGETALL session:detailed:user1001
+TTL session:detailed:user1001
+
+# Create permanent session (admin)
+SET session:admin:root "Administrator session"
+# No TTL - permanent session
+
+# Check all session keys
+KEYS session:*
+
+# Session statistics
+HSET session:stats total_logins 0 active_sessions 0 expired_sessions 0
+HINCRBY session:stats total_logins 3
+HINCRBY session:stats active_sessions 2
+HGETALL session:stats

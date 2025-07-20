@@ -1,0 +1,10 @@
+127.0.0.1:6379> SET student:1002 "Jane Smith"
+OK
+127.0.0.1:6379> SET student:1003 "Bob Johnson"
+OK
+127.0.0.1:6379> GET student:1001
+"John Doe"
+127.0.0.1:6379> GET student:1002
+"Jane Smith"
+127.0.0.1:6379> GET student:1003
+"Bob Johnson"

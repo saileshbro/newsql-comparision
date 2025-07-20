@@ -1,0 +1,114 @@
+\documentclass[12pt,a4paper]{report}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[style=apa,backend=biber]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\addbibresource{refs.bib}
+\usepackage{url}
+\usepackage{float} % For [H] table placement
+\usepackage{minted} % For code syntax highlighting (requires -shell-escape)
+\usepackage{caption} % For \captionof command with minted
+
+% Note: To compile with minted, use: pdflatex -shell-escape report.tex
+% Configure minted
+\setminted{
+  fontsize=\normalsize,
+  breaklines=true,
+  frame=lines,
+  linenos=true
+}
+
+% For screenshots in appendix
+\graphicspath{{task-1/screenshots/}{task-2/screenshots/}{task-3/screenshots/}{task-4/screenshots/}}
+
+% --- Title and Author (for PDF metadata) ---
+\hypersetup{
+  pdftitle={NoSQL and NewSQL Practical Exercises},
+  pdfauthor={Sailesh Dahal},
+  pdfsubject={NoSQL and NewSQL Practical Exercises},
+  pdfkeywords={NoSQL, NewSQL, MongoDB, Kathmandu University, Practical, Report}
+}
+
+\renewcommand{\chaptername}{Task}
+
+% --- Document ---
+\begin{document}
+
+\pagenumbering{roman}
+
+\begin{titlepage}
+  \centering
+
+  \vspace*{1cm}
+
+  {\Large\bfseries Kathmandu University\\
+    Department of Computer Science and Engineering\\
+    Dhulikhel, Kavre}
+
+  \vspace{1.5cm}
+
+  \includegraphics[width=0.3\textwidth]{ku-logo.png}
+
+  \vspace{1.5cm}
+
+  {\large NoSQL and NewSQL Practical Exercises}
+
+  \vspace{1cm}
+  {\large Submitted By\\
+    \textbf{Sailesh Dahal}}
+
+  \vspace{1.5cm}
+
+  {\large Submitted to\\
+    \textbf{Prof. Bal Krishna Bal, Ph.D.}\\
+    Department of Computer Science and Engineering}
+
+  \vspace{1.5cm}
+
+  {\large Submission Date\\
+    \today}
+
+  \vfill
+
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% MongoDB - Document-Oriented Database
+\input{docs/mongodb.tex}
+
+% Cassandra - Wide-Column Database
+\input{docs/cassandra.tex}
+
+% Neo4j - Graph Database
+\input{docs/neo4j.tex}
+
+% Redis - Key-Value Store
+\input{docs/redis.tex}
+
+% CockroachDB - Distributed SQL Database
+\input{docs/cockroachdb.tex}
+
+% Conclusion
+\input{docs/conclusion.tex}
+
+% References
+\nocite{chatgpt_gpt4o_2025,claude-sonnet-4}
+\printbibliography
+
+% Appendix
+\appendix
+\input{docs/appendix/data.tex}
+\input{docs/appendix/screenshots.tex}
+\end{document}
